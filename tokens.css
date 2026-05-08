@@ -1,0 +1,51 @@
+/* ============================================
+   6048 COMEDIA — DESIGN TOKENS
+   Paleta y variables globales de diseño
+   ============================================ */
+
+:root {
+
+  /* COLORES PRINCIPALES */
+  --tinta:      #1C1C1C;  /* Negro principal — textos, títulos */
+  --papel:      #F7F4EF;  /* Crema — fondo principal */
+  --medianoche: #1B3F5E;  /* Azul profundo — secciones oscuras, hero overlay */
+  --madera:     #E0A855;  /* Naranja cálido — labels, detalles, acentos secundarios */
+  --ceniza:     #9A8F82;  /* Gris cálido — textos secundarios, placeholders */
+  --acento:     #D94F2B;  /* Rojo — CTAs, botones primarios, elementos de acción */
+
+  /* TIPOGRAFÍAS */
+  --font-display: 'Fraunces', serif;   /* Títulos grandes — italic, 900 */
+  --font-body:    'Jost', sans-serif;  /* Cuerpo, UI, botones */
+
+  /* ESCALA TIPOGRÁFICA */
+  --text-xs:   10px;
+  --text-sm:   12px;
+  --text-base: 14px;
+  --text-md:   16px;
+  --text-lg:   20px;
+
+  /* ESPACIADO */
+  --space-xs:  8px;
+  --space-sm:  16px;
+  --space-md:  24px;
+  --space-lg:  40px;
+  --space-xl:  64px;
+
+  /* BORDES */
+  --radius: 2px;
+
+}
+
+/* ============================================
+   NOTAS DE USO
+   ============================================
+
+   --acento      → Usar UNA SOLA VEZ por pantalla (CTA principal)
+   --madera      → Labels, números del programa, detalles secundarios
+   --medianoche  → Fondos de secciones oscuras (programa, footer)
+   --ceniza      → Textos de apoyo, fechas, info secundaria
+
+   Fuente display: siempre italic + weight 900 en títulos
+   Fuente body: weight 300 (texto largo), 500 (UI), 600 (botones)
+
+   ============================================ */
