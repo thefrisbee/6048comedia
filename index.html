@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Curso de Impro · 6048</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XJENMFFZGF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XJENMFFZGF');
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,900;1,9..144,900&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -363,7 +370,7 @@
       <p class="meta-item">🕒 <strong>18.30 a 21hs</strong> · <a href="https://maps.google.com/?q=Nicaragua+6048,+Palermo,+Buenos+Aires" target="_blank" style="color:inherit;text-decoration:underline dotted;">Club Lucero, Palermo</a></p>
       <p class="meta-item">💰 <strong>$60.000</strong> el curso completo</p>
     </div>
-    <button class="btn-primary" onclick="openModal()">Reservar mi lugar</button>
+    <button class="btn-primary" onclick="openModal('hero')">Reservar mi lugar</button>
     <p class="form-nudge">¿Querés pagar por transferencia? <a href="https://forms.gle/pZStdxdaxQjMDAGF6" target="_blank" class="form-nudge-link">10% de descuento acá.</a></p>
   </div>
 </section>
@@ -441,7 +448,7 @@
         18.30 a 21hs · Club Lucero, <a href="https://maps.google.com/?q=Nicaragua+6048,+Palermo,+Buenos+Aires" target="_blank" style="color:inherit;text-decoration:underline dotted;">Nicaragua 6048, Palermo</a><br>
         $60.000 · Cupo: 12 personas
       </p>
-      <button class="btn-card" onclick="openModal()">Reservar lugar</button>
+      <button class="btn-card" onclick="openModal('card')">Reservar lugar</button>
     </div>
 
   </div>
@@ -450,7 +457,7 @@
 <section class="cta-section fade-in">
   <p class="cta-eyebrow">Cupo limitado</p>
   <h2 class="cta-title">¿Te<br>sumás?</h2>
-  <button class="btn-invert" onclick="openModal()">Reservar mi lugar</button>
+  <button class="btn-invert" onclick="openModal('sticky')">Reservar mi lugar</button>
 </section>
 
 <footer class="footer">
@@ -469,7 +476,7 @@
       <p class="modal-sub">Curso de Impro · Junio–Julio 2026</p>
     </div>
     <div class="modal-body">
-      <a href="https://www.eventbrite.com.ar/e/curso-de-impro-junio-julio-4-clases-registration-1990188352938?aff=DM" target="_blank" class="modal-option">
+      <a href="https://www.eventbrite.com.ar/e/curso-de-impro-junio-julio-4-clases-registration-1990188352938?aff=DM" target="_blank" class="modal-option" onclick="if(typeof gtag!=='undefined')gtag('event','inscription_option',{method:'eventbrite'})">
         <span class="option-icon">🎟️</span>
         <div class="option-content">
           <p class="option-title">Inscribirse por Eventbrite</p>
@@ -477,7 +484,7 @@
         </div>
         <span class="option-arrow">→</span>
       </a>
-      <a href="https://forms.gle/pZStdxdaxQjMDAGF6" target="_blank" class="modal-option">
+      <a href="https://forms.gle/pZStdxdaxQjMDAGF6" target="_blank" class="modal-option" onclick="if(typeof gtag!=='undefined')gtag('event','inscription_option',{method:'google_forms'})">
         <span class="option-icon">📋</span>
         <div class="option-content">
           <p class="option-title">Formulario con 10% de descuento</p>
@@ -485,7 +492,7 @@
         </div>
         <span class="option-arrow">→</span>
       </a>
-      <a href="https://wa.me/5491161279303?text=Hola!%20Me%20interesa%20el%20Curso%20de%20Impro%20de%20junio%2Fjulio" target="_blank" class="modal-option">
+      <a href="https://wa.me/5491161279303?text=Hola!%20Me%20interesa%20el%20Curso%20de%20Impro%20de%20junio%2Fjulio" target="_blank" class="modal-option" onclick="if(typeof gtag!=='undefined')gtag('event','inscription_option',{method:'whatsapp'})">
         <span class="option-icon">💬</span>
         <div class="option-content">
           <p class="option-title">Escribir por WhatsApp</p>
@@ -499,9 +506,10 @@
 </div>
 
 <script>
-  function openModal() {
+  function openModal(source) {
     document.getElementById('modal').classList.add('active');
     document.body.style.overflow = 'hidden';
+    if (typeof gtag !== 'undefined') gtag('event', 'open_modal', { source: source || 'unknown' });
   }
   function closeModal() {
     document.getElementById('modal').classList.remove('active');
