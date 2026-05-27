@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6048 Comedia · Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --tinta: #1C1C1C;
+    --papel: #F7F4EF;
+    --papel2: #EDE9E2;
+    --medianoche: #1B3F5E;
+    --madera: #E0A855;
+    --ceniza: #9A8F82;
+    --acento: #D94F2B;
+    --verde: #2A7A4F;
+    --rule: rgba(28,28,28,0.1);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--papel); color: var(--tinta); font-family: 'Jost', sans-serif; font-weight: 400; line-height: 1.6; min-height: 100vh; padding-bottom: 6rem; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.1rem 3rem;
+    border-bottom: 1px solid var(--rule);
+    background: rgba(247,244,239,0.94);
+    backdrop-filter: blur(12px);
+  }
+  .logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--tinta); text-decoration: none; }
+  .logo span { color: var(--acento); font-style: italic; }
+  .nav-right { display: flex; align-items: center; gap: 0.875rem; flex-wrap: wrap; }
+  .progress-pill { font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 500; color: var(--ceniza); display: flex; align-items: center; gap: 0.65rem; }
+  .progress-bar-outer { width: 100px; height: 3px; background: var(--papel2); border-radius: 2px; overflow: hidden; }
+  .progress-bar-inner { height: 100%; background: var(--medianoche); border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+  .progress-count { color: var(--tinta); font-weight: 600; }
+  .nav-btn { font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.7rem; color: var(--ceniza); background: transparent; border: 1px solid var(--rule); padding: 0.3rem 0.85rem; border-radius: 3px; cursor: pointer; letter-spacing: 0.04em; transition: color 0.15s, border-color 0.15s; }
+  .nav-btn:hover { color: var(--tinta); border-color: var(--tinta); }
+  .nav-btn.danger:hover { color: var(--acento); border-color: var(--acento); }
+
+  /* HERO */
+  .hero { padding: 4.5rem 3rem 3rem; border-bottom: 1px solid var(--rule); }
+  .hero-eyebrow { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--acento); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background: var(--acento); }
+  .hero-headline { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+  .hero-headline em { font-style: italic; color: var(--medianoche); }
+  .hero-sub { font-size: 0.85rem; font-weight: 300; color: var(--ceniza); }
+
+  /* TOOLBAR */
+  .toolbar { max-width: 920px; margin: 0 auto; padding: 1.5rem 3rem 0; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .toolbar-btn { font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 500; color: var(--ceniza); background: transparent; border: 1px solid var(--rule); padding: 0.35rem 0.9rem; border-radius: 3px; cursor: pointer; letter-spacing: 0.04em; display: flex; align-items: center; gap: 0.4rem; transition: color 0.15s, border-color 0.15s; }
+  .toolbar-btn:hover { color: var(--tinta); border-color: rgba(28,28,28,0.3); }
+  .toolbar-btn.add { color: var(--medianoche); border-color: rgba(27,63,94,0.25); }
+  .toolbar-btn.add:hover { border-color: var(--medianoche); }
+
+  /* CONTENT */
+  .content { max-width: 920px; margin: 0 auto; padding: 1.25rem 3rem 0; }
+
+  /* PILLAR CARD */
+  .pillar-card { background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: 8px; }
+  .pillar-header { display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
+  .pillar-icon { font-size: 17px; color: var(--ceniza); width: 20px; text-align: center; flex-shrink: 0; }
+  .pillar-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; margin: 0; flex: 1; outline: none; letter-spacing: -0.01em; color: var(--tinta); }
+  .pillar-title:focus { color: var(--medianoche); }
+  .pillar-meta { font-size: 0.7rem; font-weight: 500; color: var(--ceniza); display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .pillar-progress { width: 55px; height: 2px; background: var(--papel2); border-radius: 2px; overflow: hidden; }
+  .pillar-progress-fill { height: 100%; background: var(--medianoche); transition: width 0.2s; }
+  .chevron { font-size: 13px; color: var(--ceniza); transition: transform 0.2s; }
+  .chevron.open { transform: rotate(90deg); }
+
+  .pillar-body { margin-top: 1rem; display: none; }
+  .pillar-body.open { display: block; }
+
+  /* ITEM ROW */
+  .item-row { display: grid; grid-template-columns: 18px 1fr auto; gap: 10px; padding: 10px 0; border-top: 1px solid var(--rule); align-items: start; }
+  .item-row:first-child { border-top: none; }
+
+  .item-check {
+    width: 16px; height: 16px; border-radius: 4px;
+    border: 1.5px solid rgba(28,28,28,0.2);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    margin-top: 3px; background: transparent; flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .item-check:hover { border-color: var(--medianoche); }
+  .item-check.checked { background: var(--medianoche); border-color: var(--medianoche); }
+  .item-check.checked::after { content: ''; display: block; width: 8px; height: 5px; border-left: 1.5px solid #fff; border-bottom: 1.5px solid #fff; transform: rotate(-45deg) translate(1px, -1px); }
+
+  .item-content { min-width: 0; }
+  .item-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+  .item-title { font-size: 0.875rem; font-weight: 400; margin: 0; outline: none; color: var(--tinta); line-height: 1.5; }
+  .item-title:focus { color: var(--medianoche); }
+  .item-title.checked { text-decoration: line-through; color: var(--ceniza); }
+
+  /* STATUS PILLS */
+  .status-pill { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.06em; padding: 0.15rem 0.65rem; border-radius: 20px; cursor: pointer; user-select: none; flex-shrink: 0; transition: opacity 0.15s; text-transform: uppercase; }
+  .status-pill:hover { opacity: 0.75; }
+  .status-vivo { background: rgba(42,122,79,0.1); color: var(--verde); border: 1px solid rgba(42,122,79,0.2); }
+  .status-piloto { background: rgba(224,168,85,0.15); color: #9A6A00; border: 1px solid rgba(224,168,85,0.3); }
+  .status-idea { background: var(--papel2); color: var(--ceniza); border: 1px solid var(--rule); }
+  .status-pausa { background: rgba(217,79,43,0.08); color: var(--acento); border: 1px solid rgba(217,79,43,0.18); }
+
+  /* ITEM FIELDS */
+  .item-fields { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .field-block { background: var(--papel); border-radius: 4px; padding: 7px 9px; min-width: 0; border: 1px solid var(--rule); }
+  .field-label { font-size: 0.6rem; font-weight: 600; color: var(--ceniza); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+  .field-value { font-size: 0.78rem; font-weight: 300; line-height: 1.5; outline: none; min-height: 18px; word-wrap: break-word; color: var(--tinta); }
+  .field-value:focus { color: var(--medianoche); }
+  .field-value:empty::before { content: attr(data-placeholder); color: rgba(154,143,130,0.5); font-style: italic; }
+
+  /* DELETE BTN */
+  .item-delete { background: transparent; border: none; color: var(--ceniza); cursor: pointer; padding: 4px; font-size: 13px; opacity: 0; transition: opacity 0.15s; flex-shrink: 0; }
+  .item-row:hover .item-delete { opacity: 1; }
+  .item-delete:hover { color: var(--acento); }
+
+  /* ADD ITEM */
+  .add-item-btn { margin-top: 10px; background: transparent; border: 1px dashed rgba(154,143,130,0.4); border-radius: 4px; padding: 7px 12px; font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 500; color: var(--ceniza); cursor: pointer; width: 100%; text-align: left; display: flex; align-items: center; gap: 6px; transition: color 0.15s, border-color 0.15s; }
+  .add-item-btn:hover { color: var(--medianoche); border-color: var(--medianoche); }
+
+  /* PILLAR ACTIONS */
+  .pillar-actions { display: flex; gap: 6px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule); }
+  .small-btn { font-family: 'Jost', sans-serif; font-size: 0.65rem; font-weight: 500; padding: 4px 10px; background: transparent; border: 1px solid var(--rule); border-radius: 3px; color: var(--ceniza); cursor: pointer; display: flex; align-items: center; gap: 4px; transition: color 0.15s, border-color 0.15s; }
+  .small-btn:hover { color: var(--tinta); border-color: rgba(28,28,28,0.25); }
+  .small-btn.danger { color: rgba(217,79,43,0.5); }
+  .small-btn.danger:hover { color: var(--acento); border-color: rgba(217,79,43,0.3); }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    .hero { padding: 3.5rem 1.25rem 2.5rem; }
+    .content, .toolbar { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .item-fields { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">6048 <span>comedia</span></span>
+  <div class="nav-right">
+    <div class="progress-pill">
+      <div class="progress-bar-outer"><div class="progress-bar-inner" id="progressBar"></div></div>
+      <span><span class="progress-count" id="progressCount">0</span> / <span id="progressTotal">0</span></span>
+    </div>
+    <button class="nav-btn" onclick="exportState()">Export</button>
+    <button class="nav-btn" onclick="importState()">Import</button>
+    <button class="nav-btn danger" onclick="resetData()">Reset</button>
+    <input type="file" id="importInput" accept=".json" style="display:none" onchange="handleImport(event)">
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Roadmap privado</div>
+  <h1 class="hero-headline">Lean multimedio<br><em>6048 comedia.</em></h1>
+  <p class="hero-sub">pilares · contenido · distribución</p>
+</div>
+
+<div class="toolbar">
+  <button class="toolbar-btn" onclick="expandAll()"><i class="ti ti-arrows-maximize"></i> expandir todo</button>
+  <button class="toolbar-btn" onclick="collapseAll()"><i class="ti ti-arrows-minimize"></i> colapsar todo</button>
+  <button class="toolbar-btn add" onclick="addPillar()"><i class="ti ti-plus"></i> agregar pilar</button>
+</div>
+
+<div class="content" id="pillars-container"></div>
+
+<script>
+const STORAGE_KEY = '6048-roadmap-v1';
+
+const DEFAULT_DATA = {
+  pillars: [
+    {
+      id: 'p1', icon: 'ti-microphone-2', title: 'Shows en vivo', open: true,
+      items: [
+        { id: 'i1', title: 'Ciclo Stand Up viernes 22.30', status: 'pausa', checked: false, hay: '2 años corridos en Club Lucero', falta: 'Definir si vuelve regular o queda solo especiales', next: 'Decidir formato 2026' },
+        { id: 'i2', title: 'Eventos especiales (Día del Amigo, etc.)', status: 'vivo', checked: false, hay: 'Modelo probado', falta: 'Calendario de fechas tentativas del año', next: 'Listar 4-6 fechas con potencial' },
+        { id: 'i3', title: 'Long form en vivo — showcase de alumnos', status: 'idea', checked: false, hay: 'Las clases', falta: 'Formato del show, frecuencia', next: 'Probar muestra al cierre de la cursada jun/jul' }
+      ]
+    },
+    {
+      id: 'p2', icon: 'ti-school', title: 'Educación', open: true,
+      items: [
+        { id: 'i4', title: 'Curso de Impro (4 clases)', status: 'vivo', checked: false, hay: 'Edición mayo completa, junio/julio abierta', falta: 'Sistema de inscripción menos artesanal', next: 'Evaluar si pasar de WhatsApp a form + pago online' },
+        { id: 'i5', title: 'Clases de Long Form — técnica UCB', status: 'piloto', checked: false, hay: 'Inédito en Argentina', falta: 'Posicionar como diferencial, comunicarlo bien', next: 'Pieza fundacional: por qué UCB importa' },
+        { id: 'i6', title: 'Niveles / continuidad (Curso 2, avanzados)', status: 'idea', checked: false, hay: 'Demanda potencial de los alumnos del Curso 1', falta: 'Diseño curricular', next: 'Bocetar Curso 2 cuando termine la cursada actual' }
+      ]
+    },
+    {
+      id: 'p3', icon: 'ti-headphones', title: 'Podcasts', open: false,
+      items: [
+        { id: 'i7', title: 'Sí, porfa — podcast de impro', status: 'vivo', checked: false, hay: 'En YouTube', falta: 'Clips verticales para distribución', next: 'Definir rutina de clipping semanal' },
+        { id: 'i8', title: 'Podcast general', status: 'vivo', checked: false, hay: 'En YouTube', falta: 'Cadencia + identidad visual diferenciada', next: 'Auditar 3 últimos episodios y decidir formato' },
+        { id: 'i9', title: 'Monetización — sponsors, miembros', status: 'idea', checked: false, hay: 'Audiencia inicial', falta: 'Mediakit, pricing, primer sponsor', next: 'Armar mediakit one-pager' }
+      ]
+    },
+    {
+      id: 'p4', icon: 'ti-broadcast', title: 'Stream de comedia', open: false,
+      items: [
+        { id: 'i10', title: 'Stream regular en Twitch / YouTube Live', status: 'idea', checked: false, hay: 'Idea + recurso humano', falta: 'Concepto, día, frecuencia, equipo técnico', next: 'Definir formato (juegos, entrevistas, impro)' },
+        { id: 'i11', title: 'Setup técnico — cámaras, audio, OBS', status: 'idea', checked: false, hay: '—', falta: 'Inventario y faltantes', next: 'Listar lo que ya tenés vs lo que falta comprar' }
+      ]
+    },
+    {
+      id: 'p5', icon: 'ti-video', title: 'Web series y cortos', open: false,
+      items: [
+        { id: 'i12', title: 'Web serie piloto', status: 'idea', checked: false, hay: 'Talento del staff de comedia', falta: 'Guion, presupuesto, calendario de rodaje', next: 'Brainstorm de 3 conceptos cortos' },
+        { id: 'i13', title: 'Cortos sueltos / sketches', status: 'idea', checked: false, hay: '—', falta: 'Pipeline de producción ágil', next: 'Hacer 1 corto de prueba en formato lean' }
+      ]
+    },
+    {
+      id: 'p6', icon: 'ti-device-mobile', title: 'Verticales — Reels / TikTok / Shorts', open: false,
+      items: [
+        { id: 'i14', title: 'Serie vertical narrativa', status: 'idea', checked: false, hay: 'Idea', falta: 'Concepto, personajes, formato', next: 'Definir 1 concepto que pueda durar 10 episodios' },
+        { id: 'i15', title: 'Clips de podcast en vertical', status: 'piloto', checked: false, hay: 'Material crudo de los podcasts', falta: 'Rutina semanal de edición', next: 'Decidir si lo hacés vos o tercerizás' },
+        { id: 'i16', title: 'Clips de stand up', status: 'idea', checked: false, hay: 'Archivo de 2 años de shows', falta: 'Curaduría y reedición', next: 'Identificar los 10 mejores momentos del archivo' }
+      ]
+    },
+    {
+      id: 'p7', icon: 'ti-rocket', title: 'Plataforma y distribución', open: false,
+      items: [
+        { id: 'i17', title: 'Web 6048comedia.com', status: 'vivo', checked: false, hay: 'GitHub Pages, landing del curso', falta: 'Secciones por pilar, no solo curso', next: 'Reestructurar nav: shows / cursos / podcasts' },
+        { id: 'i18', title: 'Newsletter — Beehiiv', status: 'idea', checked: false, hay: '—', falta: 'Setup + primer envío', next: 'Configurar Beehiiv con dominio propio' },
+        { id: 'i19', title: 'Instagram @6048comedia', status: 'vivo', checked: false, hay: 'Cuenta activa', falta: 'Plan de contenido por pilar', next: 'Calendario editorial mensual' },
+        { id: 'i20', title: 'YouTube como hub de catálogo', status: 'vivo', checked: false, hay: 'Podcasts subidos', falta: 'Playlists por producto, branding consistente', next: 'Organizar canal por pilares' }
+      ]
+    }
+  ]
+};
+
+const STATUS_ORDER = ['idea', 'piloto', 'vivo', 'pausa'];
+const STATUS_LABELS = { vivo: 'vivo', piloto: 'piloto', idea: 'idea', pausa: 'pausa' };
+
+let data = null;
+
+function uid() { return 'x' + Math.random().toString(36).slice(2, 9); }
+
+function load() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    data = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(DEFAULT_DATA));
+  } catch(e) {
+    data = JSON.parse(JSON.stringify(DEFAULT_DATA));
+  }
+  render();
+}
+
+function save() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function cycleStatus(current) {
+  const i = STATUS_ORDER.indexOf(current || 'idea');
+  return STATUS_ORDER[(i + 1) % STATUS_ORDER.length];
+}
+
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function render() {
+  const container = document.getElementById('pillars-container');
+  container.innerHTML = '';
+  let totalItems = 0, totalChecked = 0;
+
+  data.pillars.forEach(pillar => {
+    const checkedCount = pillar.items.filter(i => i.checked).length;
+    const itemCount = pillar.items.length;
+    totalItems += itemCount;
+    totalChecked += checkedCount;
+    const pct = itemCount > 0 ? Math.round((checkedCount / itemCount) * 100) : 0;
+
+    const card = document.createElement('div');
+    card.className = 'pillar-card';
+
+    // Header
+    const header = document.createElement('div');
+    header.className = 'pillar-header';
+    header.innerHTML = `
+      <i class="ti ${pillar.icon} pillar-icon" aria-hidden="true"></i>
+      <h3 class="pillar-title" contenteditable="true" data-pillar-id="${pillar.id}" data-field="title">${escHtml(pillar.title)}</h3>
+      <div class="pillar-meta">
+        <span>${checkedCount}/${itemCount}</span>
+        <div class="pillar-progress"><div class="pillar-progress-fill" style="width:${pct}%"></div></div>
+        <i class="ti ti-chevron-right chevron ${pillar.open ? 'open' : ''}"></i>
+      </div>
+    `;
+    header.addEventListener('click', (e) => {
+      if (e.target.closest('[contenteditable]')) return;
+      pillar.open = !pillar.open;
+      save();
+      render();
+    });
+    const titleEl = header.querySelector('[contenteditable]');
+    titleEl.addEventListener('blur', () => { pillar.title = titleEl.textContent.trim(); save(); });
+    titleEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); titleEl.blur(); } });
+
+    // Body
+    const body = document.createElement('div');
+    body.className = 'pillar-body' + (pillar.open ? ' open' : '');
+
+    pillar.items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'item-row';
+
+      const check = document.createElement('div');
+      check.className = 'item-check' + (item.checked ? ' checked' : '');
+      check.addEventListener('click', () => { item.checked = !item.checked; save(); render(); });
+
+      const content = document.createElement('div');
+      content.className = 'item-content';
+      content.innerHTML = `
+        <div class="item-top">
+          <p class="item-title ${item.checked ? 'checked' : ''}" contenteditable="true" data-field="title">${escHtml(item.title)}</p>
+          <span class="status-pill status-${item.status || 'idea'}">${STATUS_LABELS[item.status || 'idea']}</span>
+        </div>
+        <div class="item-fields">
+          <div class="field-block">
+            <div class="field-label">qué hay</div>
+            <div class="field-value" contenteditable="true" data-placeholder="vacío" data-field="hay">${escHtml(item.hay)}</div>
+          </div>
+          <div class="field-block">
+            <div class="field-label">qué falta</div>
+            <div class="field-value" contenteditable="true" data-placeholder="vacío" data-field="falta">${escHtml(item.falta)}</div>
+          </div>
+          <div class="field-block">
+            <div class="field-label">próximo paso</div>
+            <div class="field-value" contenteditable="true" data-placeholder="vacío" data-field="next">${escHtml(item.next)}</div>
+          </div>
+        </div>
+      `;
+
+      content.querySelector('.status-pill').addEventListener('click', (e) => {
+        e.stopPropagation();
+        item.status = cycleStatus(item.status);
+        save();
+        render();
+      });
+
+      content.querySelectorAll('[contenteditable]').forEach(el => {
+        el.addEventListener('blur', () => { item[el.dataset.field] = el.textContent.trim(); save(); });
+        el.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); el.blur(); } });
+      });
+
+      const del = document.createElement('button');
+      del.className = 'item-delete';
+      del.title = 'eliminar';
+      del.innerHTML = '<i class="ti ti-x"></i>';
+      del.addEventListener('click', () => { pillar.items = pillar.items.filter(i => i.id !== item.id); save(); render(); });
+
+      row.appendChild(check);
+      row.appendChild(content);
+      row.appendChild(del);
+      body.appendChild(row);
+    });
+
+    const addBtn = document.createElement('button');
+    addBtn.className = 'add-item-btn';
+    addBtn.innerHTML = '<i class="ti ti-plus"></i> agregar item';
+    addBtn.addEventListener('click', () => {
+      pillar.items.push({ id: uid(), title: 'nuevo item', status: 'idea', checked: false, hay: '', falta: '', next: '' });
+      pillar.open = true;
+      save();
+      render();
+    });
+    body.appendChild(addBtn);
+
+    const actions = document.createElement('div');
+    actions.className = 'pillar-actions';
+    actions.innerHTML = `<button class="small-btn danger"><i class="ti ti-trash"></i> eliminar pilar</button>`;
+    actions.querySelector('button').addEventListener('click', () => {
+      if (!confirm('¿Eliminar este pilar y todos sus items?')) return;
+      data.pillars = data.pillars.filter(p => p.id !== pillar.id);
+      save();
+      render();
+    });
+    body.appendChild(actions);
+
+    card.appendChild(header);
+    card.appendChild(body);
+    container.appendChild(card);
+  });
+
+  const pct = totalItems ? Math.round((totalChecked / totalItems) * 100) : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = totalChecked;
+  document.getElementById('progressTotal').textContent = totalItems;
+}
+
+function expandAll() { data.pillars.forEach(p => p.open = true); save(); render(); }
+function collapseAll() { data.pillars.forEach(p => p.open = false); save(); render(); }
+
+function addPillar() {
+  data.pillars.push({ id: uid(), icon: 'ti-circle', title: 'nuevo pilar', open: true, items: [] });
+  save();
+  render();
+}
+
+function resetData() {
+  if (!confirm('¿Resetear todo a los valores por defecto? Perdés tus cambios.')) return;
+  data = JSON.parse(JSON.stringify(DEFAULT_DATA));
+  save();
+  render();
+}
+
+function exportState() {
+  const blob = new Blob([JSON.stringify({ version: 1, exported: new Date().toISOString(), data }, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = '6048-roadmap.json'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importState() { document.getElementById('importInput').click(); }
+
+function handleImport(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    try {
+      const parsed = JSON.parse(ev.target.result);
+      if (parsed.data) { data = parsed.data; save(); render(); }
+      else alert('Archivo inválido.');
+    } catch { alert('No se pudo leer el archivo.'); }
+    e.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+load();
+</script>
+</body>
+</html>
