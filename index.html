@@ -336,9 +336,30 @@
     transition: opacity 0.2s;
   }
   .course-card .btn-card:active { opacity: 0.8; }
+
+  /* NAV */
+  .site-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: flex-end; align-items: center;
+    padding: 20px 32px;
+  }
+  .site-nav-links { display: flex; gap: 2rem; list-style: none; }
+  .site-nav-links a {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(247,244,239,0.65); text-decoration: none; transition: color 0.15s;
+  }
+  .site-nav-links a:hover { color: var(--papel); }
+  .site-nav-links a.active { border-bottom: 1.5px solid var(--madera); padding-bottom: 1px; color: var(--madera); }
 </style>
 </head>
 <body>
+
+<nav class="site-nav">
+  <ul class="site-nav-links">
+    <li><a href="index.html" class="active">Cursos de Impro</a></li>
+    <li><a href="standup.html">Show de Stand Up</a></li>
+  </ul>
+</nav>
 
 <section class="hero">
   <div class="hero-bg">
@@ -371,7 +392,6 @@
       <p class="meta-item">💰 <strong>$60.000</strong> el curso completo</p>
     </div>
     <button class="btn-primary" onclick="openModal('hero')">Reservar mi lugar</button>
-    <p class="form-nudge">¿Querés pagar por transferencia? <a href="https://forms.gle/pZStdxdaxQjMDAGF6" target="_blank" class="form-nudge-link">10% de descuento acá.</a></p>
   </div>
 </section>
 
@@ -484,22 +504,14 @@
         </div>
         <span class="option-arrow">→</span>
       </a>
-      <a href="https://forms.gle/pZStdxdaxQjMDAGF6" target="_blank" class="modal-option" onclick="if(typeof gtag!=='undefined')gtag('event','inscription_option',{method:'google_forms'})">
-        <span class="option-icon">📋</span>
+      <div class="modal-option" style="cursor:default;">
+        <span class="option-icon">🏦</span>
         <div class="option-content">
-          <p class="option-title">Formulario con 10% de descuento</p>
-          <p class="option-desc">Pago por transferencia · $54.000</p>
+          <p class="option-title">Transferencia · 10% off → $54.000</p>
+          <p class="option-desc">Alias: <strong>6048comedia</strong></p>
         </div>
-        <span class="option-arrow">→</span>
-      </a>
-      <a href="https://wa.me/5491161279303?text=Hola!%20Me%20interesa%20el%20Curso%20de%20Impro%20de%20junio%2Fjulio" target="_blank" class="modal-option" onclick="if(typeof gtag!=='undefined')gtag('event','inscription_option',{method:'whatsapp'})">
-        <span class="option-icon">💬</span>
-        <div class="option-content">
-          <p class="option-title">Escribir por WhatsApp</p>
-          <p class="option-desc">Consultá antes de inscribirte</p>
-        </div>
-        <span class="option-arrow">→</span>
-      </a>
+      </div>
+
     </div>
     <button class="modal-close" onclick="closeModal()">Cerrar</button>
   </div>
