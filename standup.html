@@ -156,6 +156,16 @@
   .section-body p + p { margin-top: 1.2rem; }
   .section-body strong { font-weight: 600; color: var(--tinta); }
 
+
+  .pull-quote {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+    font-size: clamp(20px, 3vw, 28px); line-height: 1.4; letter-spacing: -0.01em;
+    color: var(--tinta);
+    border-top: 1.5px solid var(--madera);
+    border-bottom: 1.5px solid var(--madera);
+    padding: 24px 0; margin: 32px 0;
+    text-align: center;
+  }
   /* TWO COLUMN */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
   .two-col-text { }
@@ -276,12 +286,8 @@
     <p class="newsletter-label">Próximas fechas</p>
     <h2 class="newsletter-title">Enterate cuándo<br>es el próximo show.</h2>
     <p class="newsletter-sub">Suscribite y te avisamos antes que nadie cuando abramos las reservas para la nueva temporada. Fechas, line-ups y entradas gratis.</p>
-    <!-- Beehiiv embed: reemplazar form por iframe cuando esté la cuenta -->
-    <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
-      <input class="newsletter-input" type="email" name="email" placeholder="tu@email.com" required>
-      <button class="newsletter-btn" type="submit">Suscribirme</button>
-    </form>
-    <p class="newsletter-note">Sin spam. Solo cuando hay show.</p>
+    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="24890754-a21d-404c-8809-e3ae1583cb85"></script>
+    <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
   </div>
 </div>
 
@@ -295,7 +301,8 @@
         <div class="section-body">
           <p>Tras vivir en Nueva York, el creador y curador de <strong>6048</strong>, <strong>Ezequiel Asnaghi</strong>, se propuso traer a Buenos Aires la mística irrepetible de los legendarios sótanos y clubes de comedia del <em>West Village</em>. Esos espacios íntimos y magnéticos donde la proximidad con el escenario, la luz tenue, la buena barra y la libertad creativa lo son todo.</p>
           <p><strong>6048</strong> nace para replicar esa atmósfera nocturna tan particular, pero cruzándola de lleno con la impronta, el pulso y la calidez de la escena porteña. Nos instalamos en Club Lucero para dar vida a un punto de encuentro donde los comediantes puedan tomar riesgos, crecer y profesionalizarse en un entorno de nivel internacional.</p>
-          <p>En tiempos donde el humor parece suceder exclusivamente a través de las pantallas, creemos que es fundamental recuperar el ritual. El stand up es una experiencia viva, común e irrepetible. Queremos que cada viernes te encuentres con un club real: risas crudas, alta coctelería, música cuidada y esa complicidad que solo pasa cuando estamos todos en la misma habitación.</p>
+          <blockquote class="pull-quote">En tiempos donde el humor parece suceder exclusivamente a través de las pantallas, creemos que es fundamental recuperar el ritual. El stand up es una experiencia viva, común e irrepetible.</blockquote>
+          <p>Queremos que cada viernes te encuentres con un club real: risas crudas, alta coctelería, música cuidada y esa complicidad que solo pasa cuando estamos todos en la misma habitación.</p>
         </div>
       </div>
       <div class="two-col-visual">
@@ -312,7 +319,7 @@
   <div class="stats-inner">
     <div class="stat-item">
       <p class="stat-num">60</p>
-      <p class="stat-label">funciones<br>por temporada</p>
+      <p class="stat-label">funciones<br>en total</p>
     </div>
     <div class="stat-item">
       <p class="stat-num">150+</p>
@@ -380,15 +387,6 @@
   <a href="https://www.instagram.com/6048comedia" target="_blank" rel="noopener" class="footer-ig">@6048comedia</a>
 </footer>
 
-<script>
-  function handleNewsletterSubmit(e) {
-    e.preventDefault();
-    // TODO: reemplazar con Beehiiv embed o POST a su API cuando esté la cuenta
-    const btn = e.target.querySelector('.newsletter-btn');
-    btn.textContent = '¡Listo! Te avisamos.';
-    btn.disabled = true;
-    e.target.querySelector('input').disabled = true;
-  }
-</script>
+
 </body>
 </html>
