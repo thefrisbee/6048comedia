@@ -158,6 +158,12 @@
   .coach-tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .tag { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border: 1px solid rgba(28,28,28,0.25); border-radius: 2px; color: var(--tinta); }
 
+  /* TESTIMONIALS */
+  .testimonials-grid { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; }
+  .testimonial-card { padding: 28px 24px; border-left: 3px solid var(--madera); background: rgba(28,28,28,0.04); border-radius: 0 2px 2px 0; }
+  .testimonial-quote { font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--ceniza); margin-bottom: 20px; }
+  .testimonial-name { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tinta); }
+
   /* INFO */
   .info-stack { display: flex; flex-direction: column; gap: 2px; margin-top: 36px; }
   .info-card { padding: 28px 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); border-radius: 2px; }
@@ -215,6 +221,7 @@
     .programa-list { display: grid; grid-template-columns: 1fr 1fr; }
     .coach-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
     .coach-img { margin-bottom: 0; aspect-ratio: 3/4; }
+    .testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     .info-stack { flex-direction: row; }
     .info-card { flex: 1; }
     .cta-section { padding: 100px 72px; }
@@ -452,6 +459,21 @@
         <span class="tag">Monkey Toast</span>
         <span class="tag">+100 shows</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light fade-in">
+  <p class="section-label">Lo que dicen</p>
+  <h2 class="section-title">Alumnos.</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <p class="testimonial-quote">"Recomiendo mucho el curso de impro Long Form. No conocía el género y tampoco había hecho impro antes y la verdad me pareció muy bueno, sobre todo cómo el profesor iba llevando la clase para hacer que nos metiéramos cada vez más en las escenas y poder sacar cosas divertidas de cada una. Clave si querés aprender los fundamentos para poder empezar a jugar."</p>
+      <p class="testimonial-name">Agustín</p>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-quote">"Aprendí muchos ejercicios en la clase de improv. Me gustaron los juegos y también aprender a construir escenas. Si bien siento que es útil para comediantes, también lo recomiendo para actores o para alguien que busca un nuevo desafío."</p>
+      <p class="testimonial-name">Ingrid</p>
     </div>
   </div>
 </section>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist Fase 1 · 6048 Comedia</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,900;1,9..144,900&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --tinta: #1C1C1C;
+    --papel: #F7F4EF;
+    --medianoche: #1B3F5E;
+    --madera: #E0A855;
+    --ceniza: #5C5248;
+    --acento: #D94F2B;
+    --verde: #1a8a52;
+    --border: rgba(28,28,28,.1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding-bottom: 6rem;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--papel);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+    backdrop-filter: blur(8px);
+  }
+  .nav-brand {
+    font-family: 'Fraunces', serif;
+    font-style: italic; font-weight: 900;
+    font-size: 1.1rem; color: var(--medianoche);
+    letter-spacing: -.02em;
+    text-decoration: none;
+  }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .sync-status {
+    font-size: .68rem; font-weight: 500; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ceniza);
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .sync-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--ceniza); flex-shrink: 0; transition: background .3s;
+  }
+  .sync-dot.syncing { background: var(--madera); animation: pulse 1s infinite; }
+  .sync-dot.synced  { background: var(--verde); }
+  .sync-dot.error   { background: var(--acento); }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+  .progress-pill {
+    font-size: .72rem; font-weight: 500; letter-spacing: .04em;
+    color: var(--ceniza); display: flex; align-items: center; gap: .75rem;
+  }
+  .progress-bar-outer {
+    width: 100px; height: 3px;
+    background: var(--border); border-radius: 2px; overflow: hidden;
+  }
+  .progress-bar-inner {
+    height: 100%; background: var(--verde);
+    border-radius: 2px; transition: width .4s ease; width: 0%;
+  }
+  .progress-count { color: var(--tinta); font-weight: 600; }
+
+  /* HERO */
+  .hero {
+    background: var(--medianoche);
+    padding: 4rem 2.5rem 3rem;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .hero-eyebrow {
+    font-size: .68rem; font-weight: 600; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--madera); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: .75rem;
+  }
+  .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--madera); }
+  .hero-headline {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 900;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: .92; letter-spacing: -.03em;
+    color: var(--papel); margin-bottom: .75rem;
+  }
+  .hero-sub {
+    font-size: .82rem; font-weight: 300;
+    color: rgba(247,244,239,.45); letter-spacing: .04em;
+  }
+
+  /* CONTENT */
+  .content { max-width: 800px; margin: 0 auto; padding: 3rem 2.5rem 0; }
+
+  /* GROUP */
+  .group { margin-bottom: 3rem; }
+  .group-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: .75rem;
+    border-bottom: 2px solid var(--tinta);
+    margin-bottom: .25rem;
+  }
+  .group-title {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 900;
+    font-size: 1.1rem; color: var(--tinta); letter-spacing: -.01em;
+  }
+  .group-count {
+    font-size: .68rem; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ceniza);
+  }
+  .group-bar { height: 2px; background: var(--border); margin-bottom: .5rem; overflow: hidden; }
+  .group-bar-fill { height: 100%; background: var(--acento); transition: width .4s ease; }
+
+  /* ITEMS */
+  .items { display: flex; flex-direction: column; gap: 0; }
+  .item {
+    display: flex; align-items: flex-start; gap: .875rem;
+    padding: .7rem .5rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer; user-select: none;
+    transition: background .12s;
+  }
+  .item:hover { background: rgba(28,28,28,.03); border-radius: 2px; }
+  .item:last-child { border-bottom: none; }
+  .item.done { opacity: .55; }
+
+  .checkbox {
+    width: 18px; height: 18px; border-radius: 3px;
+    border: 1.5px solid rgba(28,28,28,.25);
+    flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .15s; background: transparent;
+  }
+  .item.done .checkbox {
+    background: var(--verde); border-color: var(--verde);
+  }
+  .item.done .checkbox::after {
+    content: '';
+    display: block; width: 9px; height: 5px;
+    border-left: 1.5px solid var(--papel);
+    border-bottom: 1.5px solid var(--papel);
+    transform: rotate(-45deg) translate(1px, -1px);
+  }
+
+  .item-body { flex: 1; }
+  .item-label {
+    font-size: .92rem; color: var(--tinta); line-height: 1.5;
+    transition: color .15s;
+  }
+  .item.done .item-label { text-decoration: line-through; color: var(--ceniza); }
+  .item-note {
+    font-size: .72rem; font-weight: 300; color: var(--ceniza);
+    margin-top: 2px; line-height: 1.4;
+  }
+  .item-tag {
+    display: inline-block; font-size: .6rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: .15rem .5rem; border-radius: 2px; margin-left: 8px;
+    vertical-align: middle;
+  }
+  .tag-meta     { background: rgba(27,63,94,.1); color: var(--medianoche); }
+  .tag-hito     { background: rgba(224,168,85,.15); color: #8a6010; }
+  .tag-habito   { background: rgba(28,28,28,.08); color: var(--ceniza); }
+
+  /* TOTALS */
+  .totals {
+    margin-top: 3rem; padding: 2rem 2.5rem;
+    background: var(--medianoche); border-radius: 2px;
+    display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+  }
+  .totals-label {
+    font-size: .68rem; font-weight: 600; letter-spacing: .14em;
+    text-transform: uppercase; color: rgba(247,244,239,.45);
+    margin-bottom: .25rem;
+  }
+  .totals-value {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 900;
+    font-size: 2rem; color: var(--papel); letter-spacing: -.02em; line-height: 1;
+  }
+  .totals-sep { width: 1px; height: 40px; background: rgba(255,255,255,.1); }
+
+  /* FOOTER */
+  .footer-note {
+    text-align: center; margin-top: 2.5rem;
+    font-size: .72rem; color: var(--ceniza); letter-spacing: .04em;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1.25rem; }
+    .progress-bar-outer { width: 60px; }
+    .hero { padding: 3rem 1.5rem 2.5rem; }
+    .content { padding: 2rem 1.5rem 0; }
+    .totals { padding: 1.5rem; gap: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">6048 Comedia</a>
+  <div class="nav-right">
+    <a href="plan.html" style="font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ceniza);text-decoration:none;">Plan</a>
+    <div class="sync-status">
+      <div class="sync-dot" id="syncDot"></div>
+      <span id="syncLabel">—</span>
+    </div>
+    <div class="progress-pill">
+      <div class="progress-bar-outer">
+        <div class="progress-bar-inner" id="globalBar"></div>
+      </div>
+      <span class="progress-count" id="globalCount">0 / 0</span>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <p class="hero-eyebrow">Fase 1 · 2026</p>
+  <h1 class="hero-headline">Checklist<br>Fundamentos</h1>
+  <p class="hero-sub">Checkpoints concretos para el año de fundamentos.</p>
+</div>
+
+<div class="content" id="content"></div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwTzJCyA80IYGlYaevhCFnrqMs4CRhagL2pbqRqIBkhl-B_u7IlR5HsCgMdr4mU2PE4/exec';
+const STORAGE_KEY = '6048_checklist_v1';
+
+const groups = [
+  {
+    id: 'curso',
+    title: 'Curso de impro',
+    items: [
+      { label: 'Edición mayo — completar las 4 clases', note: '6 · 13 · 20 · 27 de mayo · 18hs · Club Lucero · 16 alumnos', tag: null },
+      { label: 'Edición junio/julio — completar las 4 clases', note: '17 · 24 de junio · 1 · 8 de julio · 18.30hs · 16 alumnos', tag: null },
+      { label: 'Edición agosto — abrir inscripción', note: 'Publicar en Instagram + WhatsApp broadcast', tag: null },
+      { label: 'Edición octubre — completar 4ta edición del año', note: null, tag: null },
+      { label: 'Edición noviembre — completar 5ta edición del año', note: null, tag: null },
+      { label: '6 ediciones anuales — meta cumplida', note: '96 alumnos totales en el año · $5.76M ARS brutos', tag: 'meta' },
+    ]
+  },
+  {
+    id: 'standup',
+    title: 'Stand up — viernes en Club Lucero',
+    items: [
+      { label: '12 shows — primer trimestre', note: 'Junio · julio · agosto · 22.30hs', tag: null },
+      { label: 'Subir entradas de agosto a Eventbrite', note: 'Publicar con mínimo 3 semanas de anticipación', tag: null },
+      { label: '24 shows — segundo trimestre', note: 'Septiembre · octubre · noviembre', tag: null },
+      { label: 'Función especial fin de año', note: 'Diciembre · show de cierre · capacidad mayor o fecha doble', tag: 'hito' },
+      { label: '48 shows — meta anual cumplida', note: 'Viernes sostenidos todo el año', tag: 'meta' },
+    ]
+  },
+  {
+    id: 'contenido',
+    title: 'Contenido — Sí porfa + clips',
+    items: [
+      { label: 'Primer clip de stand up publicado en Reels', note: 'Formato vertical · subtitulado · menos de 60 seg', tag: null },
+      { label: 'Cadencia semanal de clips establecida', note: '1 clip por semana mínimo · buffer de 2 semanas armado', tag: null },
+      { label: 'Sí porfa — episodio mensual en YouTube', note: 'Formato largo · al menos 6 episodios en el año', tag: null },
+      { label: '20 clips publicados en el año', note: 'Stand up + impro + detrás de escena', tag: 'meta' },
+      { label: 'Buffer programado — 2 semanas adelante siempre', note: 'Usar Buffer para programar · nunca improvisar la semana', tag: 'habito' },
+      { label: 'Clip con más de 10k reproducciones', note: 'Primer hit orgánico de la cuenta', tag: 'hito' },
+    ]
+  },
+  {
+    id: 'audiencia',
+    title: 'Audiencia y comunidad',
+    items: [
+      { label: 'Beehiiv configurado con dominio propio', note: 'newsletter.6048comedia.com · primer envío hecho', tag: null },
+      { label: '100 suscriptores en el newsletter', note: 'Alumnos + asistentes al show + seguidores', tag: null },
+      { label: '2.000 seguidores en @6048comedia', note: 'Primer hito de crecimiento orgánico', tag: null },
+      { label: '500 suscriptores en el newsletter', note: 'Meta de fin de año', tag: null },
+      { label: '5.000 seguidores — meta anual cumplida', note: '@6048comedia · comunidad real, no inflada', tag: 'meta' },
+    ]
+  }
+];
+
+let state = {};
+let saveTimer = null;
+
+function setSyncStatus(status, label) {
+  document.getElementById('syncDot').className = 'sync-dot ' + status;
+  document.getElementById('syncLabel').textContent = label;
+}
+
+async function loadFromSheet() {
+  setSyncStatus('syncing', 'cargando');
+  try {
+    const res = await fetch(SCRIPT_URL);
+    const data = JSON.parse(await res.text());
+    if (data && typeof data === 'object') state = data;
+    setSyncStatus('synced', 'sincronizado');
+  } catch(e) {
+    try { Object.assign(state, JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}')); } catch(e2) {}
+    setSyncStatus('error', 'sin conexión');
+  }
+}
+
+async function saveToSheet() {
+  setSyncStatus('syncing', 'guardando');
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(state),
+      headers: { 'Content-Type': 'text/plain' }
+    });
+    setSyncStatus('synced', 'guardado');
+  } catch(e) {
+    setSyncStatus('error', 'error al guardar');
+  }
+}
+
+function scheduleSave() {
+  if (saveTimer) clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveToSheet, 800);
+}
+
+function getKey(gi, ii) { return groups[gi].id + '-' + ii; }
+
+function toggle(gi, ii) {
+  const key = getKey(gi, ii);
+  state[key] = !state[key];
+  renderItem(gi, ii);
+  updateGroupCount(gi);
+  updateGlobal();
+  scheduleSave();
+}
+
+function renderItem(gi, ii) {
+  const el = document.getElementById('item-' + gi + '-' + ii);
+  if (!el) return;
+  const done = !!state[getKey(gi, ii)];
+  el.classList.toggle('done', done);
+}
+
+function updateGroupCount(gi) {
+  const group = groups[gi];
+  const total = group.items.length;
+  const done = group.items.filter((_, ii) => !!state[getKey(gi, ii)]).length;
+  const el = document.getElementById('gcount-' + gi);
+  const bar = document.getElementById('gbar-' + gi);
+  if (el) el.textContent = done + ' / ' + total;
+  if (bar) bar.style.width = (total ? (done/total*100) : 0) + '%';
+}
+
+function updateGlobal() {
+  let total = 0, done = 0;
+  groups.forEach((g, gi) => {
+    g.items.forEach((_, ii) => {
+      total++;
+      if (state[getKey(gi, ii)]) done++;
+    });
+  });
+  document.getElementById('globalCount').textContent = done + ' / ' + total;
+  document.getElementById('globalBar').style.width = (total ? (done/total*100) : 0) + '%';
+  document.getElementById('totalDone').textContent = done;
+  document.getElementById('totalItems').textContent = total;
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById('totalPct').textContent = pct + '%';
+}
+
+function render() {
+  const container = document.getElementById('content');
+  container.innerHTML = '';
+
+  groups.forEach((group, gi) => {
+    const div = document.createElement('div');
+    div.className = 'group';
+    div.innerHTML = `
+      <div class="group-header">
+        <h2 class="group-title">${group.title}</h2>
+        <span class="group-count" id="gcount-${gi}">0 / ${group.items.length}</span>
+      </div>
+      <div class="group-bar"><div class="group-bar-fill" id="gbar-${gi}" style="width:0%"></div></div>
+      <div class="items" id="items-${gi}"></div>
+    `;
+    container.appendChild(div);
+
+    const itemsEl = div.querySelector('#items-' + gi);
+    group.items.forEach((item, ii) => {
+      const el = document.createElement('div');
+      el.className = 'item' + (state[getKey(gi, ii)] ? ' done' : '');
+      el.id = 'item-' + gi + '-' + ii;
+      el.onclick = () => toggle(gi, ii);
+
+      let tagHTML = '';
+      if (item.tag === 'meta')   tagHTML = '<span class="item-tag tag-meta">Meta anual</span>';
+      if (item.tag === 'hito')   tagHTML = '<span class="item-tag tag-hito">Hito</span>';
+      if (item.tag === 'habito') tagHTML = '<span class="item-tag tag-habito">Hábito</span>';
+
+      el.innerHTML = `
+        <div class="checkbox"></div>
+        <div class="item-body">
+          <div class="item-label">${item.label}${tagHTML}</div>
+          ${item.note ? `<div class="item-note">${item.note}</div>` : ''}
+        </div>
+      `;
+      itemsEl.appendChild(el);
+    });
+  });
+
+  // Totals block
+  container.insertAdjacentHTML('beforeend', `
+    <div class="totals">
+      <div>
+        <div class="totals-label">Completados</div>
+        <div class="totals-value" id="totalDone">0</div>
+      </div>
+      <div class="totals-sep"></div>
+      <div>
+        <div class="totals-label">Total</div>
+        <div class="totals-value" id="totalItems">0</div>
+      </div>
+      <div class="totals-sep"></div>
+      <div>
+        <div class="totals-label">Progreso</div>
+        <div class="totals-value" id="totalPct">0%</div>
+      </div>
+    </div>
+    <p class="footer-note">6048 Comedia · Checklist Fase 1 · 2026</p>
+  `);
+}
+
+async function init() {
+  render();
+  await loadFromSheet();
+  groups.forEach((_, gi) => {
+    groups[gi].items.forEach((_, ii) => renderItem(gi, ii));
+    updateGroupCount(gi);
+  });
+  updateGlobal();
+}
+
+init();
+</script>
+</body>
+</html>

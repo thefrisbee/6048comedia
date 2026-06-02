@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Plan de negocio — 6048 Comedia</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,900&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --tinta: #1C1C1C;
+    --papel: #F7F4EF;
+    --medianoche: #1B3F5E;
+    --madera: #E0A855;
+    --ceniza: #9A8F82;
+    --acento: #D94F2B;
+    --border: rgba(28,28,28,.1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--papel);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+  }
+  .nav-brand {
+    font-family: 'Fraunces', serif;
+    font-style: italic; font-weight: 900;
+    font-size: 1.1rem; color: var(--medianoche);
+    letter-spacing: -.01em; text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    font-size: .78rem; font-weight: 500; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ceniza);
+    text-decoration: none; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--tinta); }
+
+  /* CHECKLIST */
+  .checklist-section { margin-bottom: 2.5rem; }
+  .checklist-intro {
+    font-size: .82rem; color: var(--ceniza); margin-bottom: 1.25rem; line-height: 1.55;
+  }
+  .checklist-intro strong { color: var(--tinta); }
+
+  .cl-group { margin-bottom: 1.5rem; }
+  .cl-group-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: .5rem; padding-bottom: .4rem;
+    border-bottom: 2px solid var(--tinta);
+  }
+  .cl-group-title {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 900;
+    font-size: 1rem; color: var(--tinta);
+  }
+  .cl-progress-text {
+    font-size: .72rem; font-weight: 600; color: var(--ceniza);
+    letter-spacing: .04em;
+  }
+  .cl-progress-bar {
+    height: 3px; background: var(--border); margin-bottom: .75rem; overflow: hidden;
+  }
+  .cl-progress-fill {
+    height: 100%; background: var(--acento);
+    transition: width .4s ease;
+  }
+
+  .cl-items { display: flex; flex-direction: column; gap: 2px; }
+  .cl-item {
+    display: flex; align-items: flex-start; gap: .75rem;
+    padding: .6rem .75rem; cursor: pointer;
+    border: 1px solid transparent;
+    transition: background .15s, border-color .15s;
+    user-select: none;
+  }
+  .cl-item:hover { background: rgba(28,28,28,.03); border-color: var(--border); }
+  .cl-item.done { background: rgba(27,63,94,.04); }
+
+  .cl-check {
+    width: 18px; height: 18px; flex-shrink: 0;
+    border: 1.5px solid var(--ceniza);
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px; transition: border-color .2s, background .2s;
+  }
+  .cl-item.done .cl-check {
+    border-color: var(--medianoche); background: var(--medianoche);
+  }
+  .cl-check svg { display: none; }
+  .cl-item.done .cl-check svg { display: block; }
+
+  .cl-text { flex: 1; }
+  .cl-label {
+    font-size: .82rem; font-weight: 500; color: var(--tinta);
+    transition: color .2s;
+  }
+  .cl-item.done .cl-label {
+    color: var(--ceniza); text-decoration: line-through;
+  }
+  .cl-meta {
+    font-size: .72rem; color: var(--ceniza); margin-top: 1px; line-height: 1.4;
+  }
+  .cl-milestone {
+    font-size: .65rem; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase; padding: 2px 7px;
+    background: rgba(217,79,43,.1); color: var(--acento);
+    flex-shrink: 0; align-self: center; white-space: nowrap;
+  }
+  .cl-item.done .cl-milestone {
+    background: rgba(27,63,94,.1); color: var(--medianoche);
+  }
+
+  .cl-total {
+    margin-top: 1.25rem; padding: 1rem 1.1rem;
+    background: var(--medianoche); color: #fff;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cl-total-label { font-size: .8rem; font-weight: 500; opacity: .7; }
+  .cl-total-val {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 900;
+    font-size: 1.6rem; color: var(--madera);
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--medianoche);
+    padding: 3.5rem 2rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '6048';
+    position: absolute; right: -1rem; top: -1.5rem;
+    font-family: 'Fraunces', serif;
+    font-style: italic; font-weight: 900;
+    font-size: 10rem; color: rgba(255,255,255,.04);
+    line-height: 1; pointer-events: none; user-select: none;
+  }
+  .hero-label {
+    font-size: .7rem; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--madera);
+    margin-bottom: .6rem;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-style: italic; font-weight: 900;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #fff; line-height: 1.05;
+    margin-bottom: .5rem;
+  }
+  .hero-sub {
+    font-size: .95rem; color: rgba(255,255,255,.55);
+    font-weight: 300; max-width: 480px;
+  }
+  .hero-meta {
+    margin-top: 1.8rem;
+    display: flex; gap: 2rem; flex-wrap: wrap;
+  }
+  .hero-stat { }
+  .hero-stat .val {
+    font-family: 'Fraunces', serif;
+    font-style: italic; font-weight: 900;
+    font-size: 1.6rem; color: var(--madera); line-height: 1;
+  }
+  .hero-stat .lbl {
+    font-size: .72rem; font-weight: 500; letter-spacing: .06em;
+    text-transform: uppercase; color: rgba(255,255,255,.4);
+    margin-top: 2px;
+  }
+
+  /* LAYOUT */
+  .container { max-width: 860px; margin: 0 auto; padding: 2.5rem 2rem; }
+
+  /* SECTION HEADERS */
+  .sec-label {
+    font-size: .68rem; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ceniza);
+    margin-bottom: .75rem;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .sec-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  h2.sec-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic; font-weight: 900;
+    font-size: 1.35rem; color: var(--tinta);
+    margin-bottom: 1.1rem;
+  }
+
+  /* PILLARS */
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 2.5rem; }
+  .pillar {
+    background: var(--papel);
+    padding: 1.25rem 1.1rem 1.4rem;
+  }
+  .pillar-icon { font-size: 1.2rem; color: var(--acento); margin-bottom: .5rem; }
+  .pillar-name { font-size: .85rem; font-weight: 600; margin-bottom: .3rem; }
+  .pillar-desc { font-size: .8rem; color: var(--ceniza); line-height: 1.5; }
+
+  .pillar-rules { margin-top: .85rem; display: flex; flex-direction: column; gap: 4px; }
+  .pillar-rule {
+    font-size: .73rem; color: var(--ceniza); line-height: 1.4;
+    padding-left: .85rem; position: relative;
+  }
+  .pillar-rule::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--madera); font-weight: 600;
+  }
+
+  /* DROPOUT GRID */
+  .dropout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 2rem; }
+  .dropout-card {
+    border: 1px solid var(--border); padding: 1.1rem 1rem 1.2rem;
+  }
+  .dropout-card.adopted { background: #fff; }
+  .dropout-card.tension { background: rgba(217,79,43,.03); border-color: rgba(217,79,43,.15); }
+  .dropout-card-label {
+    font-size: .65rem; font-weight: 600; letter-spacing: .09em;
+    text-transform: uppercase; margin-bottom: .85rem;
+  }
+  .dropout-card.adopted .dropout-card-label { color: var(--medianoche); }
+  .dropout-card.tension .dropout-card-label { color: var(--acento); }
+  .dropout-item { padding: .65rem 0; border-top: 1px solid var(--border); }
+  .dropout-item:first-of-type { border-top: none; padding-top: 0; }
+  .dropout-item-title { font-size: .8rem; font-weight: 600; color: var(--tinta); margin-bottom: .25rem; }
+  .dropout-item-body { font-size: .77rem; color: var(--ceniza); line-height: 1.55; }
+  .dropout-item-body strong { color: var(--medianoche); font-weight: 600; }
+  .dropout-item-body em { font-style: italic; color: var(--tinta); }
+
+  /* CONTENT ORDER */
+  .content-order {
+    background: var(--medianoche); padding: 1.25rem 1.25rem 1.3rem;
+    margin-bottom: 2.5rem;
+  }
+  .content-order .sec-label { color: rgba(255,255,255,.45); }
+  .content-order .sec-label::after { background: rgba(255,255,255,.1); }
+  .content-order-items { display: flex; align-items: flex-start; gap: .75rem; flex-wrap: wrap; }
+  .co-step { display: flex; gap: .65rem; align-items: flex-start; flex: 1; min-width: 160px; }
+  .co-num {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 900;
+    font-size: 1.6rem; color: var(--madera); line-height: 1; flex-shrink: 0;
+  }
+  .co-title { font-size: .8rem; font-weight: 600; color: #fff; margin-bottom: .2rem; }
+  .co-desc { font-size: .73rem; color: rgba(255,255,255,.45); line-height: 1.45; }
+  .co-arrow { font-size: 1rem; color: var(--madera); align-self: center; flex-shrink: 0; padding-top: 2px; }
+
+  @media (max-width: 640px) {
+    .dropout-grid { grid-template-columns: 1fr; }
+    .content-order-items { flex-direction: column; }
+    .co-arrow { transform: rotate(90deg); }
+  }
+    border-left: 3px solid var(--madera);
+    background: rgba(27,63,94,.04);
+    padding: 1rem 1.2rem;
+    font-size: .85rem; color: var(--tinta); line-height: 1.65;
+    margin-bottom: 2.5rem;
+  }
+  .model-box strong { color: var(--medianoche); font-weight: 600; }
+
+  /* PHASES */
+  .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+  .phase {
+    border: 1px solid var(--border);
+    background: #fff;
+    padding: 1.1rem 1rem 1.25rem;
+  }
+  .phase-badge {
+    display: inline-block;
+    font-size: .65rem; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; padding: 3px 9px;
+    margin-bottom: .6rem;
+  }
+  .badge-1 { background: rgba(27,63,94,.1); color: var(--medianoche); }
+  .badge-2 { background: rgba(224,168,85,.15); color: #9a6c1a; }
+  .badge-3 { background: rgba(217,79,43,.1); color: var(--acento); }
+
+  .phase-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic; font-weight: 900;
+    font-size: 1.05rem; color: var(--tinta); margin-bottom: .15rem;
+  }
+  .phase-sub { font-size: .75rem; color: var(--ceniza); margin-bottom: .85rem; }
+  .phase-item {
+    font-size: .78rem; color: var(--tinta);
+    padding: 5px 0; border-top: 1px solid var(--border);
+    line-height: 1.45;
+  }
+  .phase-item strong { color: var(--medianoche); font-weight: 600; }
+  .phase-rev {
+    margin-top: .85rem; padding-top: .75rem;
+    border-top: 2px solid var(--border);
+    font-size: .78rem; font-weight: 600; color: var(--acento);
+  }
+
+  /* REVENUE TABLE */
+  .rev-table { width: 100%; border-collapse: collapse; margin-bottom: 2.5rem; font-size: .82rem; }
+  .rev-table th {
+    text-align: left; font-size: .68rem; font-weight: 600;
+    letter-spacing: .07em; text-transform: uppercase;
+    color: var(--ceniza); padding: .5rem .75rem .5rem 0;
+    border-bottom: 2px solid var(--tinta);
+  }
+  .rev-table td {
+    padding: .65rem .75rem .65rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--ceniza); vertical-align: top; line-height: 1.4;
+  }
+  .rev-table td:first-child { color: var(--tinta); font-weight: 500; }
+  .rev-table td.num {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 900;
+    font-size: 1rem; color: var(--medianoche); text-align: right;
+    white-space: nowrap;
+  }
+  .rev-table tr:last-child td { border-bottom: none; }
+  .rev-table .fase-badge {
+    display: inline-block;
+    font-size: .6rem; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase; padding: 2px 6px;
+    background: rgba(27,63,94,.08); color: var(--medianoche);
+  }
+
+  /* STACK */
+  .stack-section { margin-bottom: 2.5rem; }
+  .stack-group { margin-bottom: .75rem; }
+  .stack-group-label {
+    font-size: .68rem; font-weight: 600; letter-spacing: .07em;
+    text-transform: uppercase; color: var(--ceniza); margin-bottom: .4rem;
+  }
+  .stack-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: .75rem; padding: 4px 10px;
+    border: 1px solid var(--border);
+    color: var(--ceniza); background: transparent;
+  }
+  .tag.keep {
+    border-color: rgba(27,63,94,.3);
+    color: var(--medianoche);
+    background: rgba(27,63,94,.05);
+  }
+  .tag.add {
+    border-color: rgba(224,168,85,.5);
+    color: #8a5f0e;
+    background: rgba(224,168,85,.07);
+  }
+
+  /* KPIS */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 2.5rem; }
+  .kpi {
+    background: var(--papel);
+    padding: 1.1rem 1rem;
+  }
+  .kpi-val {
+    font-family: 'Fraunces', serif;
+    font-style: italic; font-weight: 900;
+    font-size: 2rem; color: var(--medianoche); line-height: 1;
+  }
+  .kpi-lbl {
+    font-size: .72rem; font-weight: 500; letter-spacing: .04em;
+    color: var(--ceniza); margin-top: .3rem;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: .5rem;
+  }
+  footer p { font-size: .75rem; color: var(--ceniza); }
+  footer strong { color: var(--tinta); }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .phases, .pillars { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero::before { font-size: 6rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">6048 Comedia</a>
+  <div class="nav-links">
+    <a href="#fases">Fases</a>
+    <a href="#revenue">Revenue</a>
+    <a href="#stack">Stack</a>
+    <a href="#kpis">KPIs</a>
+    <a href="checklist.html">Checklist</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-label">Plan de negocio · 2026–2028</div>
+  <h1>El lean<br>multimedio</h1>
+  <p class="hero-sub">Independiente, ágil y tech oriented. Comedia en vivo, clases, series y comunidad — construido de a uno.</p>
+  <div class="hero-meta">
+    <div class="hero-stat">
+      <div class="val">3</div>
+      <div class="lbl">Fases</div>
+    </div>
+    <div class="hero-stat">
+      <div class="val">2–3</div>
+      <div class="lbl">Años horizonte</div>
+    </div>
+    <div class="hero-stat">
+      <div class="val">6</div>
+      <div class="lbl">Streams de revenue</div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- PILLARES -->
+  <div class="sec-label">Pillares estratégicos</div>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-icon">⚡</div>
+      <div class="pillar-name">Independiente y ágil</div>
+      <div class="pillar-desc">Sin socios, sin deuda. Cada fase se financia con lo que genera la anterior — nunca se gasta contra proyecciones.</div>
+      <div class="pillar-rules">
+        <div class="pillar-rule">No buscar inversión externa en Fase 1 ni 2</div>
+        <div class="pillar-rule">Cada producto nuevo se lanza con demanda comprobada</div>
+        <div class="pillar-rule">Una persona decide — sin comité</div>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">⌨️</div>
+      <div class="pillar-name">Tech oriented</div>
+      <div class="pillar-desc">Las herramientas multiplican el trabajo sin sumar headcount. Automatizar antes de contratar, siempre.</div>
+      <div class="pillar-rules">
+        <div class="pillar-rule">Buffer + Beehiiv + Eventbrite reemplazan un equipo</div>
+        <div class="pillar-rule">IA para edición, subtitulado y copywriting</div>
+        <div class="pillar-rule">GitHub Pages: costo cero, control total</div>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🪶</div>
+      <div class="pillar-name">Light</div>
+      <div class="pillar-desc">Costos fijos mínimos. Club Lucero es infraestructura compartida — sin alquiler propio, sin nómina fija.</div>
+      <div class="pillar-rules">
+        <div class="pillar-rule">Colaboradores por proyecto, no empleados</div>
+        <div class="pillar-rule">Equipo propio solo cuando el volumen lo justifique</div>
+        <div class="pillar-rule">Primer empleado part-time recién en Fase 3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODELO -->
+  <div class="sec-label">El modelo Dropout aplicado a 6048</div>
+  <div class="model-box">
+    Dropout construyó un negocio rentable con equipo mínimo, sin paid marketing hasta 2022. La lección no es "hacer streaming" — es el <strong>orden en que construyeron las cosas</strong> y la decisión de quedarse enfocados cuando todo el mundo pivotea.
+  </div>
+
+  <div class="dropout-grid">
+    <div class="dropout-card adopted">
+      <div class="dropout-card-label">Adoptamos</div>
+      <div class="dropout-item">
+        <div class="dropout-item-title">Contenido gratuito como único marketing</div>
+        <div class="dropout-item-body">Dropout subía la mitad de cada show a redes como "ventana de shopping" — sin pagar un peso en ads. Los clips de stand up y Sí porfa son exactamente eso: la vitrina, no el producto.</div>
+      </div>
+      <div class="dropout-item">
+        <div class="dropout-item-title">Foco radical, un objetivo por vez</div>
+        <div class="dropout-item-body">CollegeHumor murió de "shifting objectives" — TV, YouTube, branded content, todo al mismo tiempo. El antídoto es quedarse <em>myopically focused</em>. En 6048: primero el negocio presencial, después un solo producto digital por fase.</div>
+      </div>
+      <div class="dropout-item">
+        <div class="dropout-item-title">El contenido largo unscripted es el núcleo</div>
+        <div class="dropout-item-body">Dropout asumió que el contenido scripted premium atraería suscriptores. Se equivocaron: el unscripted largo (Dimension 20, Game Changer) hizo todo — atrajo, retuvo, y redujo costos. <strong>Sí porfa es el formato central de 6048, no un complemento.</strong></div>
+      </div>
+    </div>
+    <div class="dropout-card tension">
+      <div class="dropout-card-label">Tensiones a monitorear</div>
+      <div class="dropout-item">
+        <div class="dropout-item-title">Sponsors vs. foco</div>
+        <div class="dropout-item-body">Dropout eliminó ads y branded content completamente para ir all-in en suscripción. 6048 incluye sponsors en Fase 2 — pero son una dependencia de terceros que puede comprometer el tono. Solo si no distorsionan el contenido.</div>
+      </div>
+      <div class="dropout-item">
+        <div class="dropout-item-title">Métricas sociales vs. comunidad real</div>
+        <div class="dropout-item-body">La presión de seguidores lleva a optimizar para viralizarse en lugar de construir comunidad. La métrica más importante de Fase 1 es el newsletter — esos son los que nadie te puede quitar.</div>
+      </div>
+      <div class="dropout-item">
+        <div class="dropout-item-title">Operación vs. contenido</div>
+        <div class="dropout-item-body">El riesgo real de Fase 1 es que la operación del curso y el show consuma todo el tiempo. Sí porfa y los clips necesitan fecha fija en el calendario — no son "lo que queda".</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-order">
+    <div class="sec-label" style="margin-bottom:.75rem">Orden correcto del contenido</div>
+    <div class="content-order-items">
+      <div class="co-step">
+        <div class="co-num">1</div>
+        <div class="co-text">
+          <div class="co-title">Sí porfa — impro larga en YouTube</div>
+          <div class="co-desc">El núcleo que atrae y retiene. Episodio mensual mínimo.</div>
+        </div>
+      </div>
+      <div class="co-arrow">→</div>
+      <div class="co-step">
+        <div class="co-num">2</div>
+        <div class="co-text">
+          <div class="co-title">Clips derivados de Sí porfa</div>
+          <div class="co-desc">La vitrina en Reels y TikTok. Sale del mismo rodaje.</div>
+        </div>
+      </div>
+      <div class="co-arrow">→</div>
+      <div class="co-step">
+        <div class="co-num">3</div>
+        <div class="co-text">
+          <div class="co-title">Stand up en vivo</div>
+          <div class="co-desc">Convierte audiencia digital en comunidad presencial.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FASES -->
+  <div id="fases" class="sec-label">Fases</div>
+  <div class="phases">
+    <div class="phase">
+      <div class="phase-badge badge-1">Fase 1 · 2026</div>
+      <div class="phase-title">Fundamentos</div>
+      <div class="phase-sub">Base sólida, primeros ingresos digitales</div>
+      <div class="phase-item"><strong>Audiencia:</strong> crecer @6048comedia a 5k seguidores reales</div>
+      <div class="phase-item"><strong>Contenido:</strong> Sí porfa sistemático + clips de stand up semanales</div>
+      <div class="phase-item"><strong>Educación:</strong> 6 ediciones del curso × 16 alumnos</div>
+      <div class="phase-item"><strong>Show:</strong> viernes consolidados en Club Lucero</div>
+      <div class="phase-item"><strong>Newsletter:</strong> Beehiiv activo con lista propia</div>
+      <div class="phase-rev">Meta: ~$3.5M ARS/mes</div>
+    </div>
+    <div class="phase">
+      <div class="phase-badge badge-2">Fase 2 · 2027</div>
+      <div class="phase-title">Expansión</div>
+      <div class="phase-sub">Primeras producciones propias y membresía</div>
+      <div class="phase-item"><strong>Web series:</strong> primera serie vertical (6–8 eps)</div>
+      <div class="phase-item"><strong>Membresía:</strong> lanzar 6048+ (contenido extra, BTS)</div>
+      <div class="phase-item"><strong>Sponsors:</strong> primer patrocinador del podcast o show</div>
+      <div class="phase-item"><strong>Educación:</strong> curso online asincrónico + presencial</div>
+      <div class="phase-item"><strong>Audiencia:</strong> 15k seguidores + 300 suscriptores pagos</div>
+      <div class="phase-rev">Meta: ~$8M ARS/mes</div>
+    </div>
+    <div class="phase">
+      <div class="phase-badge badge-3">Fase 3 · 2028</div>
+      <div class="phase-title">El multimedio</div>
+      <div class="phase-sub">Múltiples formatos, ingresos diversificados</div>
+      <div class="phase-item"><strong>Producciones:</strong> 2+ series/año (vertical + horizontal)</div>
+      <div class="phase-item"><strong>Shows:</strong> giras o función especial anual</div>
+      <div class="phase-item"><strong>Equipo:</strong> 1 colaborador part-time</div>
+      <div class="phase-item"><strong>Licencias:</strong> venta de contenido a plataformas o marcas</div>
+      <div class="phase-item"><strong>Audiencia:</strong> 40k+ seguidores + 1000 suscriptores pagos</div>
+      <div class="phase-rev">Meta: ~$20M ARS/mes</div>
+    </div>
+  </div>
+
+  <!-- REVENUE -->
+  <div id="revenue" class="sec-label">Streams de revenue</div>
+  <table class="rev-table">
+    <thead>
+      <tr>
+        <th>Stream</th>
+        <th>Cómo funciona</th>
+        <th>Fase</th>
+        <th style="text-align:right">Mix est.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Curso de impro presencial</td>
+        <td>4 clases · 16 cupos · $60k ARS</td>
+        <td><span class="fase-badge">1–3</span></td>
+        <td class="num">40%</td>
+      </tr>
+      <tr>
+        <td>Entradas stand up</td>
+        <td>Eventbrite · viernes · Club Lucero</td>
+        <td><span class="fase-badge">1–3</span></td>
+        <td class="num">20%</td>
+      </tr>
+      <tr>
+        <td>Curso online asincrónico</td>
+        <td>Grabado · venta permanente</td>
+        <td><span class="fase-badge">2–3</span></td>
+        <td class="num">15%</td>
+      </tr>
+      <tr>
+        <td>Membresía 6048+</td>
+        <td>Contenido extra · BTS · acceso early</td>
+        <td><span class="fase-badge">2–3</span></td>
+        <td class="num">10%</td>
+      </tr>
+      <tr>
+        <td>Sponsors y branded content</td>
+        <td>Newsletter + podcast + contenido social</td>
+        <td><span class="fase-badge">2–3</span></td>
+        <td class="num">10%</td>
+      </tr>
+      <tr>
+        <td>Licencias y festivales</td>
+        <td>Venta de series · funciones especiales</td>
+        <td><span class="fase-badge">3</span></td>
+        <td class="num">5%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- STACK -->
+  <div id="stack" class="sec-label">Stack técnico lean</div>
+  <div class="stack-section">
+    <div class="stack-group">
+      <div class="stack-group-label">Mantener</div>
+      <div class="stack-tags">
+        <span class="tag keep">GitHub Pages</span>
+        <span class="tag keep">Instagram Business</span>
+        <span class="tag keep">Eventbrite</span>
+        <span class="tag keep">WhatsApp</span>
+      </div>
+    </div>
+    <div class="stack-group">
+      <div class="stack-group-label">Agregar</div>
+      <div class="stack-tags">
+        <span class="tag add">Beehiiv (newsletter)</span>
+        <span class="tag add">Buffer (scheduling)</span>
+        <span class="tag add">CapCut / DaVinci (edición)</span>
+        <span class="tag add">Teachable o Lemon Squeezy (curso online)</span>
+        <span class="tag add">Memberful o Patreon (6048+)</span>
+        <span class="tag add">Notion (producción)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIS -->
+  <div id="kpis" class="sec-label">KPIs año 1</div>
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-val">6</div>
+      <div class="kpi-lbl">Ediciones del curso</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">48</div>
+      <div class="kpi-lbl">Viernes de stand up</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">5k</div>
+      <div class="kpi-lbl">Seguidores meta</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">500</div>
+      <div class="kpi-lbl">Suscriptores newsletter</div>
+    </div>
+  </div>
+
+  <!-- CHECKLIST FASE 1 -->
+  <div id="checklist" class="sec-label">Checklist Fase 1 · 2026</div>
+  <div class="checklist-section">
+    <p class="checklist-intro">Checkpoints concretos para el año de fundamentos. Hacé click para marcar cada uno — el progreso se guarda en el navegador.</p>
+
+    <!-- EDUCACIÓN -->
+    <div class="cl-group" id="grp-educacion">
+      <div class="cl-group-header">
+        <div class="cl-group-title">Curso de impro</div>
+        <div class="cl-progress-text" id="prog-text-educacion">0 / 6</div>
+      </div>
+      <div class="cl-progress-bar"><div class="cl-progress-fill" id="prog-fill-educacion" style="width:0%"></div></div>
+      <div class="cl-items" id="items-educacion">
+        <div class="cl-item" data-id="ed1" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Edición mayo — completar las 4 clases</div><div class="cl-meta">6 · 13 · 20 · 27/5 · 18hs · Club Lucero · 16 alumnos</div></div>
+          <div class="cl-milestone">Mayo</div>
+        </div>
+        <div class="cl-item" data-id="ed2" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Edición junio/julio — completar las 4 clases</div><div class="cl-meta">17 · 24/6 · 1 · 8/7 · 18.30hs · 16 alumnos</div></div>
+          <div class="cl-milestone">Jul</div>
+        </div>
+        <div class="cl-item" data-id="ed3" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Edición agosto — abrir inscripción</div><div class="cl-meta">Publicar en Instagram + WhatsApp broadcast</div></div>
+          <div class="cl-milestone">Ago</div>
+        </div>
+        <div class="cl-item" data-id="ed4" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Edición octubre — completar</div><div class="cl-meta">4ta edición del año</div></div>
+          <div class="cl-milestone">Oct</div>
+        </div>
+        <div class="cl-item" data-id="ed5" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Edición noviembre — completar</div><div class="cl-meta">5ta edición del año</div></div>
+          <div class="cl-milestone">Nov</div>
+        </div>
+        <div class="cl-item" data-id="ed6" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">6 ediciones anuales — meta cumplida</div><div class="cl-meta">96 alumnos totales en el año · $5.76M ARS brutos</div></div>
+          <div class="cl-milestone">Meta anual</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOWS -->
+    <div class="cl-group" id="grp-shows">
+      <div class="cl-group-header">
+        <div class="cl-group-title">Stand up — viernes en Club Lucero</div>
+        <div class="cl-progress-text" id="prog-text-shows">0 / 5</div>
+      </div>
+      <div class="cl-progress-bar"><div class="cl-progress-fill" id="prog-fill-shows" style="width:0%"></div></div>
+      <div class="cl-items" id="items-shows">
+        <div class="cl-item" data-id="sh1" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">12 shows — primer trimestre</div><div class="cl-meta">Junio · julio · agosto · 22.30hs</div></div>
+          <div class="cl-milestone">Q2</div>
+        </div>
+        <div class="cl-item" data-id="sh2" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Subir entradas de agosto a Eventbrite</div><div class="cl-meta">Publicar con mínimo 3 semanas de anticipación</div></div>
+          <div class="cl-milestone">Jul</div>
+        </div>
+        <div class="cl-item" data-id="sh3" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">24 shows — segundo trimestre</div><div class="cl-meta">Septiembre · octubre · noviembre</div></div>
+          <div class="cl-milestone">Q3</div>
+        </div>
+        <div class="cl-item" data-id="sh4" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Función especial fin de año</div><div class="cl-meta">Diciembre · show de cierre · capacidad mayor o fecha doble</div></div>
+          <div class="cl-milestone">Dic</div>
+        </div>
+        <div class="cl-item" data-id="sh5" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">48 shows — meta anual cumplida</div><div class="cl-meta">Viernes sostenidos todo el año</div></div>
+          <div class="cl-milestone">Meta anual</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENIDO -->
+    <div class="cl-group" id="grp-contenido">
+      <div class="cl-group-header">
+        <div class="cl-group-title">Contenido — Sí porfa + clips</div>
+        <div class="cl-progress-text" id="prog-text-contenido">0 / 6</div>
+      </div>
+      <div class="cl-progress-bar"><div class="cl-progress-fill" id="prog-fill-contenido" style="width:0%"></div></div>
+      <div class="cl-items" id="items-contenido">
+        <div class="cl-item" data-id="co1" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Primer clip de stand up publicado en Reels</div><div class="cl-meta">Formato vertical · subtitulado · menos de 60 seg</div></div>
+          <div class="cl-milestone">Jun</div>
+        </div>
+        <div class="cl-item" data-id="co2" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Cadencia semanal de clips establecida</div><div class="cl-meta">1 clip por semana mínimo · buffer de 2 semanas armado</div></div>
+          <div class="cl-milestone">Jul</div>
+        </div>
+        <div class="cl-item" data-id="co3" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Sí porfa — episodio mensual en YouTube</div><div class="cl-meta">Formato largo · al menos 6 episodios en el año</div></div>
+          <div class="cl-milestone">Mensual</div>
+        </div>
+        <div class="cl-item" data-id="co4" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">20 clips publicados en el año</div><div class="cl-meta">Stand up + impro + detrás de escena</div></div>
+          <div class="cl-milestone">Meta</div>
+        </div>
+        <div class="cl-item" data-id="co5" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Buffer programado — 2 semanas adelante siempre</div><div class="cl-meta">Usar Buffer para programar · nunca improvisar la semana</div></div>
+          <div class="cl-milestone">Hábito</div>
+        </div>
+        <div class="cl-item" data-id="co6" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Clip con más de 10k reproducciones</div><div class="cl-meta">Primer hit orgánico de la cuenta</div></div>
+          <div class="cl-milestone">Hito</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUDIENCIA -->
+    <div class="cl-group" id="grp-audiencia">
+      <div class="cl-group-header">
+        <div class="cl-group-title">Audiencia y comunidad</div>
+        <div class="cl-progress-text" id="prog-text-audiencia">0 / 5</div>
+      </div>
+      <div class="cl-progress-bar"><div class="cl-progress-fill" id="prog-fill-audiencia" style="width:0%"></div></div>
+      <div class="cl-items" id="items-audiencia">
+        <div class="cl-item" data-id="au1" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">Beehiiv configurado con dominio propio</div><div class="cl-meta">newsletter.6048comedia.com · primer envío hecho</div></div>
+          <div class="cl-milestone">Jun</div>
+        </div>
+        <div class="cl-item" data-id="au2" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">100 suscriptores en el newsletter</div><div class="cl-meta">Alumnos + asistentes al show + seguidores</div></div>
+          <div class="cl-milestone">Ago</div>
+        </div>
+        <div class="cl-item" data-id="au3" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">2.000 seguidores en @6048comedia</div><div class="cl-meta">Primer hito de crecimiento orgánico</div></div>
+          <div class="cl-milestone">Sep</div>
+        </div>
+        <div class="cl-item" data-id="au4" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">500 suscriptores en el newsletter</div><div class="cl-meta">Meta de fin de año</div></div>
+          <div class="cl-milestone">Dic</div>
+        </div>
+        <div class="cl-item" data-id="au5" onclick="toggle(this)">
+          <div class="cl-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cl-text"><div class="cl-label">5.000 seguidores — meta anual cumplida</div><div class="cl-meta">@6048comedia · comunidad real, no inflada</div></div>
+          <div class="cl-milestone">Meta anual</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOTAL -->
+    <div class="cl-total">
+      <div class="cl-total-label">Progreso total Fase 1</div>
+      <div class="cl-total-val" id="total-val">0 / 22</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p><strong>6048 Comedia</strong> · Nicaragua 6048, Palermo · @6048comedia</p>
+  <p>Actualizado mayo 2026</p>
+</footer>
+
+</body>
+<script>
+  const GROUPS = {
+    educacion: 6, shows: 5, contenido: 6, audiencia: 5
+  };
+  const TOTAL = Object.values(GROUPS).reduce((a,b)=>a+b,0);
+
+  function getState() {
+    try { return JSON.parse(localStorage.getItem('6048_cl') || '{}'); } catch { return {}; }
+  }
+  function saveState(s) {
+    try { localStorage.setItem('6048_cl', JSON.stringify(s)); } catch {}
+  }
+
+  function toggle(el) {
+    const id = el.dataset.id;
+    const state = getState();
+    state[id] = !state[id];
+    saveState(state);
+    applyState(state);
+  }
+
+  function applyState(state) {
+    let total = 0;
+    Object.keys(GROUPS).forEach(grp => {
+      const items = document.querySelectorAll(`#items-${grp} .cl-item`);
+      let done = 0;
+      items.forEach(item => {
+        const checked = !!state[item.dataset.id];
+        item.classList.toggle('done', checked);
+        if (checked) done++;
+      });
+      const max = GROUPS[grp];
+      const pct = Math.round((done / max) * 100);
+      document.getElementById(`prog-fill-${grp}`).style.width = pct + '%';
+      document.getElementById(`prog-text-${grp}`).textContent = `${done} / ${max}`;
+      total += done;
+    });
+    document.getElementById('total-val').textContent = `${total} / ${TOTAL}`;
+  }
+
+  applyState(getState());
+</script>
+</html>
