@@ -136,6 +136,11 @@
   }
   .section-body { font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--ceniza); }
   .section-dark .section-body { color: rgba(247,244,239,0.55); }
+  .alumni-block { margin-top: 36px; }
+  .alumni-note { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--ceniza); margin-bottom: 20px; font-style: italic; }
+  .alumni-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .alumni-name { font-size: 12px; font-weight: 500; letter-spacing: 0.04em; padding: 6px 12px; border: 1px solid rgba(28,28,28,0.18); border-radius: 2px; color: var(--tinta); }
+  .alumni-name span { color: var(--madera); margin-left: 6px; font-weight: 400; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; }
 
   /* PROGRAMA */
   .programa-list { display: flex; flex-direction: column; gap: 0; margin-top: 36px; }
@@ -419,9 +424,28 @@
   <p class="section-label">Sobre el curso</p>
   <h2 class="section-title">Inventar escenas de comedia desde cero.</h2>
   <p class="section-body">
-    ¿Viste Middleditch & Schwartz en Netflix? Eso es impro de formato largo — improvisar estructuras complejas de comedia partiendo de una sola palabra. La técnica que usan a diario todos tus comediantes favoritos en EEUU.<br><br>
-    Este curso es una introducción de 4 clases a los aspectos fundamentales del impro. Sin experiencia previa necesaria — solo un interés por la actuación o la comedia.
+    Una introducción de 4 clases a los aspectos fundamentales del impro — un espacio seguro para personas adultas que quieren mejorar sus habilidades de expresión y liberar su creatividad a partir de la creación colectiva. A través de juegos y técnicas teatrales, exploraremos los principios de la improvisación en formato largo, empezando con ejercicios en grupo y poco a poco entrando al trabajo escénico. Sin experiencia previa necesaria — solo un interés por la actuación o la comedia.
   </p>
+  <div class="alumni-block">
+    <p class="alumni-note">¿Viste Middleditch &amp; Schwartz en Netflix? Eso es impro de formato largo. La misma técnica que estudiaron en UCB, Second City e Improv Olympic:</p>
+    <div class="alumni-grid">
+      <div class="alumni-name">Thomas Middleditch <span>UCB</span></div>
+      <div class="alumni-name">Ben Schwartz <span>UCB</span></div>
+      <div class="alumni-name">Aubrey Plaza <span>UCB</span></div>
+      <div class="alumni-name">Amy Poehler <span>UCB</span></div>
+      <div class="alumni-name">Kate McKinnon <span>UCB</span></div>
+      <div class="alumni-name">Bill Hader <span>UCB</span></div>
+      <div class="alumni-name">John Mulaney <span>UCB</span></div>
+      <div class="alumni-name">Nick Kroll <span>UCB</span></div>
+      <div class="alumni-name">Aziz Ansari <span>UCB</span></div>
+      <div class="alumni-name">Tina Fey <span>Second City</span></div>
+      <div class="alumni-name">Steve Carell <span>Second City</span></div>
+      <div class="alumni-name">Stephen Colbert <span>Second City</span></div>
+      <div class="alumni-name">Bill Murray <span>Second City</span></div>
+      <div class="alumni-name">Mike Myers <span>Second City</span></div>
+      <div class="alumni-name">Chris Farley <span>Second City</span></div>
+    </div>
+  </div>
 </section>
 
 <section class="section section-dark fade-in">
@@ -510,7 +534,7 @@
 </section>
 
 
-<section class="grad-section fade-in">
+<section class="grad-section fade-in" style="display:none">
   <p class="grad-eyebrow">Final de curso</p>
   <p class="grad-names">Feli · Sofía · Agus · Iván<br>Ingrid · Mauricio* · Anniina* · Lautaro*</p>
   <p class="grad-date">Mayo 2026</p>
