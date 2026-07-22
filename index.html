@@ -381,6 +381,34 @@
   .grad-date { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ceniza); margin-bottom: 40px; }
   .grad-footnote { font-size: 0.65rem; color: var(--ceniza); margin-bottom: 32px; margin-top: -28px; letter-spacing: 0.04em; }
   .grad-img { width: 100%; max-width: 640px; border-radius: 4px; display: block; margin: 0 auto; }
+
+  /* VIDEOS RECOMENDADOS */
+  .videos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .video-card { display: block; text-decoration: none; }
+  .video-thumb {
+    position: relative; aspect-ratio: 16/9; overflow: hidden;
+    border-radius: 2px; margin-bottom: 12px; background: rgba(255,255,255,0.06);
+  }
+  .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s; }
+  .video-card:hover .video-thumb img { transform: scale(1.04); }
+  .video-play {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.28); transition: background 0.2s;
+  }
+  .video-play-icon {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(247,244,239,0.15); border: 1.5px solid rgba(247,244,239,0.5);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .video-card:hover .video-play { background: rgba(0,0,0,0.42); }
+  .video-card:hover .video-play-icon { background: var(--acento); border-color: var(--acento); }
+  .video-play-icon svg { width: 14px; height: 14px; fill: var(--papel); margin-left: 2px; }
+  .video-title { font-size: 13px; font-weight: 500; color: var(--papel); line-height: 1.45; margin-bottom: 4px; }
+  .video-channel { font-size: 10px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(247,244,239,0.38); }
+  @media (min-width: 768px) {
+    .videos-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  }
 </style>
 </head>
 <body>
@@ -514,6 +542,45 @@
       <p class="testimonial-quote">"Aprendí muchos ejercicios en la clase de improv. Me gustaron los juegos y también aprender a construir escenas. Si bien siento que es útil para comediantes, también lo recomiendo para actores o para alguien que busca un nuevo desafío."</p>
       <p class="testimonial-name">Ingrid</p>
     </div>
+  </div>
+</section>
+
+<section class="section section-dark fade-in">
+  <p class="section-label" style="color:var(--ceniza);">Para mirar</p>
+  <h2 class="section-title" style="color:var(--papel);">Shows que recomendamos.</h2>
+  <div class="videos-grid">
+    <a class="video-card" href="https://www.youtube.com/watch?v=kssfS3kccOw" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/kssfS3kccOw/hqdefault.jpg" alt="Middleditch &amp; Schwartz — SHORT PAUL">
+        <div class="video-play"><div class="video-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
+      </div>
+      <p class="video-title">Middleditch &amp; Schwartz — SHORT PAUL</p>
+      <p class="video-channel">Middleditch &amp; Schwartz · Netflix</p>
+    </a>
+    <a class="video-card" href="https://www.youtube.com/watch?v=bB1ESv06hkI&t=3s" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/bB1ESv06hkI/hqdefault.jpg" alt="From Ally to Zacky — Dropout">
+        <div class="video-play"><div class="video-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
+      </div>
+      <p class="video-title">From Ally to Zacky</p>
+      <p class="video-channel">Dropout</p>
+    </a>
+    <a class="video-card" href="https://www.youtube.com/watch?v=P4HTxmqNTCY&t=354s" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/P4HTxmqNTCY/hqdefault.jpg" alt="ASSSSCAT Improv — UCB">
+        <div class="video-play"><div class="video-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
+      </div>
+      <p class="video-title">ASSSSCAT Improv</p>
+      <p class="video-channel">Upright Citizens Brigade</p>
+    </a>
+    <a class="video-card" href="https://www.youtube.com/watch?v=oh3zRZhwhSQ&t=84s" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/oh3zRZhwhSQ/hqdefault.jpg" alt="House of Lies Improv — Showtime">
+        <div class="video-play"><div class="video-play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>
+      </div>
+      <p class="video-title">House of Lies Improv</p>
+      <p class="video-channel">Showtime</p>
+    </a>
   </div>
 </section>
 
