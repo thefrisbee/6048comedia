@@ -444,13 +444,13 @@
     <p class="eyebrow">Agosto 2026 · Buenos Aires</p>
     <h1 class="title-main">Curso<br>de Impro</h1>
     <p class="title-sub">4 clases · desde cero</p>
-    <p class="hero-badge">✦ Nuevo curso</p>
+    <p class="hero-badge hero-badge-sold-out">✦ Completo</p>
     <div class="hero-meta" style="margin-top: 20px;">
       <p class="meta-item">📅 <strong>Miércoles 5, 12, 19 y 26 de agosto</strong></p>
       <p class="meta-item">🕒 <strong>18.30 a 21hs</strong> · <a href="https://maps.google.com/?q=Nicaragua+6048,+Palermo,+Buenos+Aires" target="_blank" style="color:inherit;text-decoration:underline dotted;">Club Lucero, Palermo</a></p>
       <p class="meta-item">💰 <strong>$60.000</strong> · Valor total del curso</p>
     </div>
-    <button class="btn-primary" onclick="openModal('hero')">Reservar mi lugar</button>
+    <button class="btn-primary" onclick="openModal('hero')">Anotarme para el próximo</button>
   </div>
 </section>
 
@@ -612,8 +612,9 @@
       </p>
     </div>
 
-    <!-- AGOSTO 2026 — ABIERTO -->
-    <div class="course-card">
+    <!-- AGOSTO 2026 — COMPLETO -->
+    <div class="course-card sold-out">
+      <div class="sold-out-banner">Completo</div>
       <p class="info-label">Agosto 2026</p>
       <p class="info-value">4 miércoles</p>
       <p class="info-detail">
@@ -621,7 +622,7 @@
         18.30 a 21hs · Club Lucero, <a href="https://maps.google.com/?q=Nicaragua+6048,+Palermo,+Buenos+Aires" target="_blank" style="color:inherit;text-decoration:underline dotted;">Nicaragua 6048, Palermo</a><br>
         Valor total del curso: $60.000 · Cupo limitado
       </p>
-      <button class="btn-card" onclick="openModal('card')">Reservar lugar</button>
+      <button class="btn-card" onclick="openModal('card')">Anotarme para el próximo</button>
     </div>
 
   </div>
@@ -637,9 +638,9 @@
 </section>
 
 <section class="cta-section fade-in">
-  <p class="cta-eyebrow">Cupo limitado</p>
+  <p class="cta-eyebrow">Próximo curso</p>
   <h2 class="cta-title">¿Te<br>sumás?</h2>
-  <button class="btn-invert" onclick="openModal('sticky')">Reservar mi lugar</button>
+  <button class="btn-invert" onclick="openModal('sticky')">Anotarme para el próximo</button>
 </section>
 
 <footer class="footer">
@@ -654,26 +655,12 @@
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-header">
-      <p class="modal-title">Reservar lugar</p>
-      <p class="modal-sub">Curso de Impro · Agosto 2026</p>
+      <p class="modal-title">Agosto — Completo</p>
+      <p class="modal-sub">Anotate para el próximo curso</p>
     </div>
     <div class="modal-body">
-      <a class="modal-option" href="https://www.eventbrite.com.ar/e/curso-de-impro-agosto-4-clases-registration-1993280399332?aff=WEBSITE" target="_blank" rel="noopener">
-        <span class="option-icon">🎟️</span>
-        <div class="option-content">
-          <p class="option-title">Pagar por Eventbrite</p>
-          <p class="option-desc">Valor total del curso: $60.000 · tarjeta de crédito o débito</p>
-        </div>
-        <span class="option-arrow">→</span>
-      </a>
-      <a class="modal-option" href="https://www.instagram.com/6048comedia" target="_blank" rel="noopener">
-        <span class="option-icon">💸</span>
-        <div class="option-content">
-          <p class="option-title">Pagar por transferencia</p>
-          <p class="option-desc">Valor total del curso: $54.000 · 10% de descuento — transferí al alias <strong>6048comedia</strong> y envianos el comprobante por Instagram</p>
-        </div>
-        <span class="option-arrow">→</span>
-      </a>
+      <p style="font-size:13px; color:var(--tinta); opacity:0.65; text-align:center; margin-bottom:4px;">Déjanos tu email y te avisamos cuando abramos el próximo curso.</p>
+      <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="24890754-a21d-404c-8809-e3ae1583cb85"></script>
     </div>
     <button class="modal-close" onclick="closeModal()">Cerrar</button>
   </div>
