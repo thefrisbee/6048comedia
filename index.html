@@ -420,6 +420,15 @@
   @media (min-width: 768px) {
     .videos-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
   }
+  /* FAQ */
+  .faq-list { margin-top: 40px; display: flex; flex-direction: column; }
+  .faq-item { border-top: 1px solid rgba(28,28,28,0.12); }
+  .faq-item:last-child { border-bottom: 1px solid rgba(28,28,28,0.12); }
+  .faq-item summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; cursor: pointer; font-size: 16px; font-weight: 500; color: var(--tinta); }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-icon { flex-shrink: 0; font-size: 20px; font-weight: 300; color: var(--madera); transition: transform 0.2s; }
+  .faq-item[open] .faq-icon { transform: rotate(45deg); }
+  .faq-answer { padding: 0 0 22px; font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--ceniza); max-width: 560px; }
 </style>
 <script type="application/ld+json">
 {
@@ -439,6 +448,17 @@
         "addressCountry": "AR"
       },
       "sameAs": ["https://www.instagram.com/6048comedia"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "¿Necesito experiencia previa?", "acceptedAnswer": { "@type": "Answer", "text": "No. El curso está diseñado para empezar desde cero. Lo único que necesitás es ganas de jugar." } },
+        { "@type": "Question", "name": "¿Para qué edades es?", "acceptedAnswer": { "@type": "Answer", "text": "Para mayores de edad. Tuvimos gente de 18 y de 50, con todo el rango — no hay edad para el impro." } },
+        { "@type": "Question", "name": "¿Tengo que querer hacer comedia?", "acceptedAnswer": { "@type": "Answer", "text": "No necesariamente. El impro trabaja escucha, creatividad, presencia y trabajo en equipo — herramientas útiles para el día a día aunque no te interese subir a un escenario." } },
+        { "@type": "Question", "name": "¿Cuántas personas hay por clase?", "acceptedAnswer": { "@type": "Answer", "text": "El grupo es reducido. Los cupos son limitados para que cada clase sea un espacio real de trabajo y no una charla magistral." } },
+        { "@type": "Question", "name": "¿Dónde y cuándo son las clases?", "acceptedAnswer": { "@type": "Answer", "text": "En Club Lucero, Nicaragua 6048, Palermo. Son 4 clases, los miércoles de 18.30 a 21hs." } },
+        { "@type": "Question", "name": "¿Qué pasa si soy muy tímida o introvertido?", "acceptedAnswer": { "@type": "Answer", "text": "Vas a estar en un buen lugar. El curso arranca con ejercicios grupales en un ambiente seguro, sin presión de ser gracioso/a." } }
+      ]
     },
     {
       "@type": "Course",
@@ -548,6 +568,37 @@
       <div class="alumni-name">Mike Myers <span>Second City</span></div>
       <div class="alumni-name">Chris Farley <span>Second City</span></div>
     </div>
+  </div>
+</section>
+
+<section class="section section-light fade-in">
+  <p class="section-label">Preguntas frecuentes</p>
+  <h2 class="section-title">Lo que suelen preguntar.</h2>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>¿Necesito experiencia previa? <span class="faq-icon">+</span></summary>
+      <p class="faq-answer">No. El curso está diseñado para empezar desde cero. Lo único que necesitás es ganas de jugar.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Para qué edades es? <span class="faq-icon">+</span></summary>
+      <p class="faq-answer">Para mayores de edad. Tuvimos gente de 18 y de 50, con todo el rango — no hay edad para el impro.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Tengo que querer hacer comedia? <span class="faq-icon">+</span></summary>
+      <p class="faq-answer">No necesariamente. El impro trabaja escucha, creatividad, presencia y trabajo en equipo — herramientas útiles para el día a día aunque no te interese subir a un escenario.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Cuántas personas hay por clase? <span class="faq-icon">+</span></summary>
+      <p class="faq-answer">El grupo es reducido. Los cupos son limitados para que cada clase sea un espacio real de trabajo y no una charla magistral.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Dónde y cuándo son las clases? <span class="faq-icon">+</span></summary>
+      <p class="faq-answer">En Club Lucero, Nicaragua 6048, Palermo. Son 4 clases, los miércoles de 18.30 a 21hs.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Qué pasa si soy muy tímida o introvertido? <span class="faq-icon">+</span></summary>
+      <p class="faq-answer">Vas a estar en un buen lugar. El curso arranca con ejercicios grupales en un ambiente seguro, sin presión de "ser gracioso/a".</p>
+    </details>
   </div>
 </section>
 
